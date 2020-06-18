@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Big Brother's documentation!
-=======================================
-This is the Index document and toctree.
-The TOC is picked up from document 'code'
+Welcome to BigBadWolf wiki!
+===========================
+These are the voyages and experiences of BigBadWolf Linux travels.
+
 
 .. toctree::
    :maxdepth: 2
