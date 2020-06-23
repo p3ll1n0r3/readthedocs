@@ -16,6 +16,7 @@ These are the voyages and experiences of BigBadWolf Linux travels.
    gitlab
    snmp
    susemanager
+   confluence
    
 
 This is a test 
