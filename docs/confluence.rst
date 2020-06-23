@@ -1,3 +1,6 @@
+Confluence installation on SUSE SLES 15.SP1
+'''''''''''''''''''''''''''''''''''''''''''
+
 zypper refresh
 
 zypper install postgresql postgresql-server
