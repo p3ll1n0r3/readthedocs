@@ -14,13 +14,15 @@ Setup Logical Volumes
 
 Attach a 500 G hard disk
 Create a Volume Group : vg_suma
+And Logical Volumes
 
 .. code-block:: shell
 
       VG          LV             Filesystem                Size         Filesystem
 
-      vg_suma     lv_postgres    /var/lib/pgsql             50 G         xfs
+      vg_suma     lv_postgres    /var/lib/pgsql             50 G        xfs
       vg_suma     lv_spacewalk   /var/spacewalk            300 G        xfs
+      vg_suma     lv_www         /srv/www                  100 G        xfs
 
 
 .. code-block:: shell
@@ -31,16 +33,18 @@ Create a Volume Group : vg_suma
 
    # lvcreate -L 50G -n lv_postgres vg_suma
    # lvcreate -L 300G -n lv_spacewalk vg_suma
+   # lvcreate -L 100G -n lv_www vg_suma
 
    # mkfs.xfs /dev/mapper/vg_suma-lv_postgres
    # mkfs.xfs /dev/mapper/vg_suma-lv_spacewalk
+   # mkfs.xfs /dev/mapper/vg_suma-lv_www
 
 
 Create directories
 
 .. code-block:: shell
 
-      mkdir -p /var/lib/pgsql /var/spacewalk
+      mkdir -p /var/lib/pgsql /var/spacewalk /srv/www
 
 
 Get the UUID information
@@ -56,6 +60,7 @@ Mount in /etc/fstab
 
       UUID=abcdef1234.......     /var/lib/pgsql     xfs      defaults    0 0
       UUID=ABCDEF1234.......     /var/spacewalk     xfs      defaults    0 0
+      UUID=AABBCC1122.......     /srv/www           xfs      defaults    0 0
 
    # mount -a
 
