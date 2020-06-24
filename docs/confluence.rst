@@ -1,7 +1,7 @@
 Confluence installation on SUSE SLES 15.SP1
 '''''''''''''''''''''''''''''''''''''''''''
 
-.. code-block: shell
+.. code-block:: shell
 
             zypper refresh
 
@@ -20,7 +20,8 @@ Confluence installation on SUSE SLES 15.SP1
 
             exit
 
-.. code-block: shell
+
+.. code-block:: shell
 
             cat /var/lib/pgsql/data/pg_hba.conf
 
@@ -29,7 +30,7 @@ Confluence installation on SUSE SLES 15.SP1
             ...
 
 
-.. code-block: shell
+.. code-block:: shell
             
             linux-ilu2:~ # ./atlassian-confluence-7.4.1-x64.bin
             WARNING: Please make sure fontconfig is installed in your Linux distribution for Confluence installation.
@@ -87,10 +88,11 @@ Confluence installation on SUSE SLES 15.SP1
             Finishing installation ...
 
 
-.. code-block: shell
+.. code-block:: shell
 
             firewall-cmd --add-port=8090/tcp --permanent
             firewall-cmd --reload
+
 
 Surf to the Confluence server
 Firefox : http://192.168.122.149:8090
