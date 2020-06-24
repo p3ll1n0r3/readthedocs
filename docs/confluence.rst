@@ -103,6 +103,10 @@ Confluence installation on SUSE SLES 15.SP1
 Surf to the Confluence server
 Firefox : http://192.168.122.149:8090
 
+To install Atlassian JIRA, use similar instructions to setup Postgres database.
+
+Issues with confluence and jira on the same server.
+KB : https://confluence.atlassian.com/jirakb/user-unexpectedly-logged-out-of-jira-server-192872663.html
 
 
 
