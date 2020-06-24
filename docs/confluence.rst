@@ -93,6 +93,12 @@ Confluence installation on SUSE SLES 15.SP1
             firewall-cmd --add-port=8090/tcp --permanent
             firewall-cmd --reload
 
+            zypper install insserv-compat
+
+            systemctl enable postgresql.service
+            systemctl enable confluence.service
+            systemctl start postgresql.service
+            systemctl start confluence.service
 
 Surf to the Confluence server
 Firefox : http://192.168.122.149:8090
