@@ -11,11 +11,12 @@ Install SNMP agent tools
 
    # yum -y install net-snmp-utils net-snmp
    
-   # net-snmp-config --create-snmpv3-user -a MD5 -A geek123 geekuser
+   # net-snmp-create-v3-user -a SHA-512 -A authpass -x AES -X privpass geekuser
    
    # service snmpd start
 
    # service enable start
  
-   # snmpwalk -v3 -u geekuser -l authNoPriv -a MD5 -A geek123 localhost
+   # snmpwalk -v3 -l authpriv -u geekuser -a SHA-512 -A authpass -x AES -X privpass localhost
+   
    
