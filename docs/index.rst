@@ -6,20 +6,19 @@
 Welcome to BigBadWolf wiki!
 ===========================
 These are the voyages and experiences of BigBadWolf Linux travels.
-
+In progress transferring old notes to readthedocs-format.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
    
+   confluence
    iscsi
    gitlab
+   openssl
    snmp
    susemanager
-   confluence
    
-
-This is a test 
 
 Indices and tables
 ==================
