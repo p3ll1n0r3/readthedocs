@@ -1,6 +1,8 @@
 Gitlab Server installation
 ==========================
 
+Download from : https://packages.gitlab.com/gitlab/gitlab-ee
+
 setup server
 
 SUSE SLES 15.1 
