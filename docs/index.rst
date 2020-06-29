@@ -16,6 +16,7 @@ In progress transferring old notes to readthedocs-format.
    iscsi
    gitlab
    openssl
+   password
    snmp
    susemanager
    
