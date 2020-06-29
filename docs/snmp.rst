@@ -13,9 +13,9 @@ Install SNMP agent tools
    
    # net-snmp-create-v3-user -a SHA-512 -A authpass -x AES -X privpass geekuser
    
-   # service snmpd start
+   # systemctl start snmpd
 
-   # service enable start
+   # systemctl enable snmpd
  
    # snmpwalk -v3 -l authpriv -u geekuser -a SHA-512 -A authpass -x AES -X privpass localhost
    
