@@ -33,6 +33,19 @@ Open Firewalls to listen to 161
    # firewall-cmd --reload
 
 
+Configure Location and Contact information for SNMP agent
+
+
+.. code-block:: shell
+   
+   # cat /etc/snmp/snmpd.conf
+   ...
+   syslocation My Secret Nuclear Bunker
+   systcontact The Basterd Operator from Hell (red@devil.net)
+   ...
+
+
+
 Start and enable the SNMP agent
 
 
