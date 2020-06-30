@@ -65,3 +65,38 @@ Test the SNMP agent functionality and listener. This should display all MIBs ava
  
    # snmpwalk -v3 -l authpriv -u geekuser -a SHA-512 -A authpass -x AES -X privpass localhost
    
+
+Zabbix : Add Host
+'''''''''''''''''
+
+Add a host to Zabbix server: Main Menu -> Configuration -> Hosts
+
+On top right corner, Create host
+
+1) Set Host name
+
+2) Groups : Add groups (e.g Linux Servers)
+
+3) Interfaces : Add type SNMP
+
+- set SNMPv3
+- set set IP address and DNS name
+- set Security name (e.g. created above as user "geekuser")
+- set Security level to authPriv
+- set Authentication protocol = SHA
+- set the Authentication passphrase (created configuration of SNMP agent)
+- set Privacy protocol = AES
+- set the Privacy passphrase (created configuration of SNMP agent)
+- Submit by selecting the "Add" button
+
+5) Modify Host again
+
+- Select Templates
+- Link new template to correct type of device to monitor (e.g "Template OS Linux SNMPv2")
+- Submit by select the "Update" button
+
+6) Zabbix should start collection data in the Monitor "Hosts" view
+
+7) Troubleshooting: Run the snmpwalk command from a the ssh terminal (zabbix server -> snmp agent ip)
+
+
