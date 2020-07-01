@@ -22,6 +22,7 @@ Centos seems to work with SHA-512, but SUSE SLES seems not to supprt SHA-512.
 .. code-block:: shell
    
    # net-snmp-create-v3-user -a SHA-512 -A authpass -x AES -X privpass geekuser
+   ## net-snmp-create-v3-user -a SHA -A authpass -x AES -X privpass geekuser
 
 
 Open Firewalls to listen to 161
@@ -29,7 +30,7 @@ Open Firewalls to listen to 161
 .. code-block:: shell
 
    # firewall-cmd --add-port=161/tcp --permanent
-   # firewall-cmd --add-port=161/udp --permanent
+   ## firewall-cmd --add-port=161/udp --permanent
    # firewall-cmd --reload
 
 
