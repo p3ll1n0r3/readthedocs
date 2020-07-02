@@ -1,5 +1,5 @@
-profile file
-============
+~/.profile file
+===============
 General shell profile file. Configuring path extended to personal binary files and script directories. Setting som environmentals and aliases.
 
 .. code-block:: shell
