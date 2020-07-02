@@ -18,6 +18,7 @@ In progress transferring old notes to readthedocs-format.
    gitlab
    openssl
    password
+   profile
    snmp
    susemanager
    
