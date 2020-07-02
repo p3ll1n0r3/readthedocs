@@ -3,7 +3,7 @@ Bash Resource file  ~/.bashrc
 
 Setting a customized prompt and terminal options
 
-.. code-blocks:: shell
+.. code-block:: shell
 
   # ~/.bashrc
 
