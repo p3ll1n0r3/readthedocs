@@ -7,6 +7,11 @@ Setting a customized prompt and terminal options
 
   # ~/.bashrc
 
+  __git_branch() {
+    _GITSTATUS=$(git symbolic-ref HEAD --short 2>/dev/null | sed 's/\(.*\)/(&)/')
+    echo $_GITSTATUS
+  }
+
   # If not running interactively, don't do anything
   [[ $- != *i* ]] && return
 
