@@ -12,6 +12,7 @@ In progress transferring old notes to readthedocs-format.
    :maxdepth: 2
    :caption: Contents:
    
+   bashrc
    confluence
    iscsi
    gitlab
