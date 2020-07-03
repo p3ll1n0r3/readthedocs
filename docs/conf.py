@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'BigBadWold Wiki'
+project = 'BigBadWolf Wiki'
 copyright = '2020, BigBadWolf'
 author = 'BigBadWolf'
 
@@ -103,7 +103,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'BigBadWoldWikidoc'
+htmlhelp_basename = 'BigBadWolfWikidoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -130,7 +130,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'BigBadWoldWiki.tex', 'BigBadWold Wiki Documentation',
+    (master_doc, 'BigBadWolfWiki.tex', 'BigBadWolf Wiki Documentation',
      'BigBadWolf', 'manual'),
 ]
 
@@ -140,7 +140,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'bigbadwoldwiki', 'BigBadWold Wiki Documentation',
+    (master_doc, 'bigbadwolfwiki', 'BigBadWolf Wiki Documentation',
      [author], 1)
 ]
 
@@ -151,8 +151,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'BigBadWoldWiki', 'BigBadWold Wiki Documentation',
-     author, 'BigBadWoldWiki', 'One line description of project.',
+    (master_doc, 'BigBadWolfWiki', 'BigBadWolf Wiki Documentation',
+     author, 'BigBadWolfWiki', 'One line description of project.',
      'Miscellaneous'),
 ]
 
