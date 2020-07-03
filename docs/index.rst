@@ -17,6 +17,7 @@ In progress transferring old notes to readthedocs-format.
    iscsi
    gitlab
    openssl
+   pacman
    password
    profile
    snmp
