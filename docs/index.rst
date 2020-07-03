@@ -23,6 +23,8 @@ In progress transferring old notes to readthedocs-format.
    snmp
    susemanager
    
+   linux
+   
 
 Indices and tables
 ==================
