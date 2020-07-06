@@ -12,11 +12,21 @@ Setting a customized prompt and terminal options
     echo $_GITSTATUS
   }
 
+  function __stat() {
+    if [ $? -eq 0 ]; then
+        echo -en "\033[0;32m✔ $Color_Off "
+    else
+        echo -en "\033[0;31m✘ $Color_Off "
+    fi
+  }
+
+
   # If not running interactively, don't do anything
   [[ $- != *i* ]] && return
 
-  # git simple branch prompt
-  export PS1='$(__git_branch)\[\e[0;34m\]\t \[\e[0;10m\][\[\e[0;31m\]\!:\[\e[0;34m\]$(pwd)\[\e[0;10m\]]\[\e[0;37m\] \$ \[\e[0;20m\]'
+  # set prompt
+  # return code from previous command - time - history_id - current path
+  export PS1='$(__stat)$(__git_branch)\[\e[0;34m\]\t \[\e[0;10m\][\[\e[0;31m\]\!:\[\e[0;34m\]$(pwd)\[\e[0;10m\]]\[\e[0;37m\] \$ \[\e[0;20m\]'
 
   # Various BASH options
   shopt -s autocd
