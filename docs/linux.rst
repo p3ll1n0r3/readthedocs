@@ -87,6 +87,8 @@ drill         	nslookup dnssec |br|           		drill -DT www.google.com |br|
 du            	files/directories size calculation |br|	du -sh * |br|
               						du -a \| sort -n -r \| head -n 5  |br|
 
+egrep         	grep with regexp |br|              	egrep -v "^$\|^#" /etc/ssh/sshd_config |br|
+
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
@@ -114,8 +116,6 @@ audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
 
 
-egrep         grep with regexp
-              egrep -v "^$|^#" /etc/ssh/sshd_config
 
 fallocate     preallocate a file
               fallocate-l 20MB helloworld
