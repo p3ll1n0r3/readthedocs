@@ -43,7 +43,26 @@ chmod           change file permissions |br|		chmod +x file.sh |br|
 
 chown           change file owner |br|			chown root:root file.sh |br|
                  					chown -R root:root /root/secret |br|
-							
+
+chvt          	change virtual console |br|		chvt 2 |br|
+
+crontab       	edit / view crontabs |br|		crontab -e |br|
+              						crontab -el jsnow |br|
+              						crontab -eu jsnow |br|
+
+cryptsetup    	Setup and manager LUKS devices |br|	cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda2 |br|
+              						cryptsetup open /dev/sda2 luks_lvm |br|
+	              					cryptsetup luksChangeKey <target device> -S <target key slot number> |br|
+              						cryptsetup luksDump /dev/sda2 |br|
+              						cryptsetup luksAddKey --key-slot 1 /dev/sda2 |br|
+              						cryptsetup luksRemoveKey /dev/sda2 |br|
+
+curl          	get data from url |br|			curl -Ok https://www.google.com |br|
+              						curl --insecure  -L -v -s -o /dev/null https://www.google.com/ |br|
+
+cut           	cut part of file |br|			cut -f 1 cities.txt |br|
+              						cut -f 1 -d : /etc/passwd
+
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
@@ -70,29 +89,6 @@ wget            get noninteractive network		wget http://www.google.com |br|
 audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
 
-chvt          change virtual console |br|
-              chvt 2
-
-crontab       edit / view crontabs |br|
-              crontab -e |br|
-              crontab -el jsnow |br|
-              crontab -eu jsnow
-
-cryptsetup    Setup and manager LUKS devices |br|
-              cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda2 |br|
-              cryptsetup open /dev/sda2 luks_lvm |br|
-              cryptsetup luksChangeKey <target device> -S <target key slot number> |br|
-              cryptsetup luksDump /dev/sda2 |br|
-              cryptsetup luksAddKey --key-slot 1 /dev/sda2 |br|
-              cryptsetup luksRemoveKey /dev/sda2
-
-curl          get data from url |br|
-              curl -Ok https://www.google.com |br|
-              curl --insecure  -L -v -s -o /dev/null https://www.google.com/
-
-cut           cut part of file |br|
-              cut -f 1 cities.txt |br|
-              cut -f 1 -d : /etc/passwd
 
 date          print date |br|
               date -d "+1month" |br|
