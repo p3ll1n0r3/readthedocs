@@ -225,15 +225,16 @@ lvcreate      	create logical volume |br|		lvcreate -L 100GB -n backup rootvg |b
               						lvcreate -l 100 -n lv_100extends rootvg |br|
               						lvcreate -l 100%FREE -n lv_100procent_available rootvg |br|
 
-lvdisplay	list logical volumes with details |br|
+lvdisplay	list logical volumes with |br|
+		details |br|
 
 lvextend	logical volume extend |br|		lvextend -size 200M -r /dev/vg/lv_xfs |br|
               						lvextend -L +100M -r /dev/mapper/rootvg-root-100MB-lv |br|
               						lvextend -l 50 -r /dev/mapper/rootvg-my50extend-lv |br|
               						lvextend -l 100%FREE -r /dev/mapper/rootvg-home-rest-of-available-space-in-vg |br|
 
-lvmdiskscan   	list devices that may be used as 
-		physical volumes |br|
+lvmdiskscan   	list devices that may be 
+		used as physical volumes |br|
 
 lvs		list logical volumes |br|
 
@@ -294,7 +295,8 @@ nmcli         	network manager CLI |br|		nmcli con show |br|
               						nmcli general logging |br|
               						nmcli con delete uuid d49f78de-68d2-412d-80bc-0e238d380b8e |br|
 
-nmap          	network / open ports scanner/mapper|br|	nmap -sV -p 22 localhost |br|
+nmap          	network / open ports |br|		nmap -sV -p 22 localhost |br| 
+		scanner/mapper|br|	
 
 nmtui         	network manager text menu |br|
 
@@ -384,68 +386,54 @@ sha384sum |br|
 sha512sum |br|		
 =============== ======================================= ===========================================================
 
+smbpasswd	set samba user password	 |br|		smbpasswd -a robby |br|
 
-smbpasswd     	set samba user password
-              	smbpasswd -a robby
+socat         	multipurpose relay |br|			socat tcp-connect:192.168.1.100:2604 file:`tty`,raw,echo=0 |br|
 
-socat         	multipurpose relay (SOcket CAT
-              	exec socat tcp-connect:192.168.1.100:2604 file:`tty`,raw,echo=0
-
-sort          	sort input
-              	sort -n
-              	sort -f
+sort          	sort input |br|				sort -n |br|
+              						sort -f |br|
 
 ssh             secure shell connection |br|		ssh jsnow@secret.org |br|
-                					ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
-                					ssh -Xa jsnow@secret.org |br|
-                  					ssh -p 2022 secret.org |br|
-                  					ssh -Q {cipher|mac|kex} secret.org |br|
+                					ssh -vvv -i ~/.ssh/id_rsa bigbadwolf@secretbunker.org |br|
+                					ssh -Xa bigbadwolf@secretbunker.org |br|
+                  					ssh -p 2022 secretbunker.org |br|
+                  					ssh -Q {cipher|mac|kex} secretbunker.org |br|
 
+sshfs         	filesystem client based on ssh |br|	sshfs bigbadwolf@10.1.1.1:/ /mnt |br|
 
+ssh-agent     	start a ssh-agent |br|			ssh-agent -s |br|
 
-sshfs         filesystem client based on ssh
-              sshfs jsnow@10.1.1.1:/ /mnt
+ssh-add       	add a key to the ssh-agent |br|		ssh-add ~/.ssh/id_rsa |br|
 
-ssh-agent     start a ssh-agent
-              ssh-agent -s
+ssh-keygen    	generate  SSH keypair |br|		ssh-keygen -b 4096 -t rsa |br|
 
-ssh-add       add a key to the ssh-agent
-              ssh-add ~/.ssh/id_rsa
+ssh-copy-id   	copy ssh key to server |br|		ssh-copy-id secretbunker.org |br|
+              						ssh-copy-id -p 2022 -i ~/.ssh/id_rsa.pub bigbadwolf@secretbunker.org |br|
 
-ssh-keygen    generate  SSH keypair (if copy/paste a key to Windows , save as UTF-8, NOT unicode)
-              ssh-keygen -b 4096 -t rsa
+sudo          	run program as superuser |br|		sudo systemctl restart nginx.service |br|
+              						sudo -i |br|
+							sudo -l |br|
 
-ssh-copy-id   copy ssh key to server for user
-              ssh-copy-id remote-server
-              ssh-copy-id -p 2022 -i ~/.ssh/id_rsa.pub user@remote-server
+swapoff       	turn off swap on filesystem |br|	swapoff /dev/mapper/rootvg-swap |br|
 
-sudo          run program as superuser
-              sudo systemctl restart nginx.service
-              sudo -i
+swapon        	turn on swap on filesystem |br|		swapon -a |br|
+              						swapon /dev/mapper/rootvg-swap |br|
 
-swapoff       turn off swap on filesystem
-              swapoff /dev/mapper/rootvg-swap
-
-swapon        turn on swap on filesystem
-              swapon -a
-              swapon /dev/mapper/rootvg-swap
-
-systemctl     systemd control
-              systemctl list-unit-files --state=enabled
-              systemctl list-timers
-              systemctl -t help
-              systemctl enable --now libvirtd
-              systemctl disable libvirtd
-              systemctl start libvirtd.service
-              systemctl stop libvirtd.service
-              systemctl mask sshd.service
-              systemctl unmask sshd.service
-              systemctl list-dependencies sshd.service
-              systemctl is-enabled libvirtd.service
-              systemctl get-default
-              systemctl set-default graphical.target
-              systemctl isolate multi-user.target
-              systemctl --failed
+systemctl     	systemd control |br|			systemctl list-unit-files --state=enabled |br|
+              						systemctl list-timers |br|
+              						systemctl -t help |br|
+              						systemctl enable --now libvirtd |br|
+              						systemctl disable libvirtd |br|
+              						systemctl start libvirtd.service |br|
+              						systemctl stop libvirtd.service |br|
+              						systemctl mask sshd.service |br|
+              						systemctl unmask sshd.service |br|
+              						systemctl list-dependencies sshd.service |br|
+              						systemctl is-enabled libvirtd.service |br|
+              						systemctl get-default |br|
+              						systemctl set-default graphical.target |br|
+              						systemctl isolate multi-user.target |br|
+              						systemctl --failed |br|
 
 tar           manage tarballs
               tar -xvf microcode-20180108.tgz -C /tmp
