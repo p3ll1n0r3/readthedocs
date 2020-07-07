@@ -89,9 +89,68 @@ du            	files/directories size calculation |br|	du -sh * |br|
 
 egrep         	grep with regexp |br|              	egrep -v "^$\|^#" /etc/ssh/sshd_config |br|
 
+fallocate     	preallocate a file |br|			fallocate-l 20MB helloworld |br|
+
+file          	identify fileformat |br|
+
+find          	find files |br|				find / -name *.log |br|
+              						find / -user jsnow -exec cp -rfp {} /root/filesfound/ \\;
+
+firewall-cmd  	firewalld managemant rules/zones |br|	firewall-cmd --list-all |br|
+              						firewall-cmd --reload |br|
+              						firewall-cmd --permanent --add-masquerade |br|
+              						firewall-cmd --permanent --add-service={http,https} |br|
+              						firewall-cmd --permanent --add-port={80/tcp,443/tcp,389/tcp,636/tcp,88/tcp,464/tcp,53/tcp,88/udp,464/udp,53/udp,123/udp} |br|
+              						firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=10.0.0.0/24 destination address=192.168.0.10/32 port port=22 protocol=tcp accept' |br|
+              						firewall-cmd --permanent --list-rich-rules |br|
+              						firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 source address=10.0.0.0/24 destination address=192.168.0.10/32 port port=22 protocol=tcp accept' |br|
+              						firewall-cmd --permanent --zone=testing --add-rich-rule='rule family=ipv4 source address=192.168.0.10/24 reject' |br|
+              						firewall-cmd --permanent --add-rich-rule='rule service name=ssh limit value=10/m accept' |br|
+              						firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.0.0/24" service name="ssh" log prefix="ssh" level="info" limit value="50/m" accept' |br|
+              						firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=192.168.0.0/24 forward-port=513 protocol=tcp to-port=132' |br|
+              						firewall-cmd --direct --add-rule ipv4 filter INPUT 0 -p tcp --dport 9000 -j ACCEPT |br|
+              						firewall-cmd --direct --get-all-rules |br|
+
+fc-list       	list available fonts |br|
+
+fc-match      	match available fonts |br|		fc-match monospace |br|
+
+free          	available memory |br|			free -m |br|
+              						free -h |br|
+
+getfacl       	list file access list |br|
+
+getsebool     	get SELinux boolean values |br|		getsebool -a |br|
+
+git           	Distributed version control		git --version |br|
+		system.  |br|				git config --global user.name "BiBadWolf" |br|
+              						git config --global user.email "bigbadwolf@secretbunker.se" |br|
+              						git config --list |br|
+              						git clone https://github.com/polygamma/aurman |br|
+              						git clone https://github.com/polygamma/aurman aurman2 |br|
+              						git pull |br|
+              						git status |br|
+              						git add -A . |br|
+              						git status |br|
+              						git commit -m "Updated file X" |br|
+              						git push |br|
+              						git init |br|
+              						git add .Xresources |br|
+              						git status |br|
+              						git user.name bigbadwolf |br|
+              						git commit -m "My first commit" |br|
+              						git remote add origin https://github.com/p3ll1n0r3/dotfiles |br|
+              						git push --mirror |br|
+
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
+              						cat /etc/passwd \| grep jsnow |br|
+              						grep -i linux *.txt |br|
+              						grep -v ^#  /etc/ssh/sshd_config \| grep . |br|
+              						grep -B3 -A3 error /var/log/messages |br|
+              						grep -v ^$ /etc/ssh/sshd_config |br|
                   					grep -v ^root /etc/passwd |br|
+grubby        	update boot parameters kernels |br|	grubby –update-kernel=ALL –args=”console=ttyS0″ |br|
  
 sha1sum         calculate hash checksum |br|  
 sha224sum       calculate hash checksum |br|
@@ -116,76 +175,6 @@ audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
 
 
-
-fallocate     preallocate a file
-              fallocate-l 20MB helloworld
-
-file          identify fileformat
-
-find          find files
-              find / -name *.log
-              find / -user jsnow -exec cp -rfp {} /root/filesfound/ \;
-
-firewall-cmd  firewalld managemant rules/zones
-              firewall-cmd --list-all
-              firewall-cmd --reload
-              firewall-cmd --permanent --add-masquerade
-              firewall-cmd --permanent --add-service={http,https}
-              firewall-cmd --permanent --add-port={80/tcp,443/tcp,389/tcp,636/tcp,88/tcp,464/tcp,53/tcp,88/udp,464/udp,53/udp,123/udp}
-              firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=10.0.0.0/24 destination address=192.168.0.10/32 port port=22 protocol=tcp accept'
-              firewall-cmd --permanent --list-rich-rules
-              firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 source address=10.0.0.0/24 destination address=192.168.0.10/32 port port=22 protocol=tcp accept'
-              firewall-cmd --permanent --zone=testing --add-rich-rule='rule family=ipv4 source address=192.168.0.10/24 reject'
-              firewall-cmd --permanent --add-rich-rule='rule service name=ssh limit value=10/m accept'
-              firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.0.0/24" service name="ssh" log prefix="ssh" level="info" limit value="50/m" accept'
-              firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=192.168.0.0/24 forward-port=513 protocol=tcp to-port=132'
-              firewall-cmd --direct --add-rule ipv4 filter INPUT 0 -p tcp --dport 9000 -j ACCEPT
-              firewall-cmd --direct --get-all-rules
-
-fc-list       list available fonts
-
-fc-match      match available fonts
-              fc-match monospace           # List what is declared as monospace font
-
-free          available memory
-              free -m
-              free -h
-
-getfacl       list file access list
-
-getsebool     get SELinux boolean values
-              getsebool -a
-
-git           Distributed version control system.
-              git --version
-              git config --global user.name "BiBadWolf"
-              git config --global user.email "bigbadwolf@hellden.se"
-              git config --list
-              git clone https://github.com/polygamma/aurman
-              git clone https://github.com/polygamma/aurman aurman2
-              git pull
-              git status
-              git add -A
-              git status
-              git commit -m "Updated file X"
-              git push
-              git init
-              git add .Xresources
-              git status
-              git user.name p3ll1n0r3
-              git commit -m "My first commit"
-              git remote add origin https://github.com/p3ll1n0r3/dotfiles
-              git push --mirror
-
-grep          find string in file(s)
-              cat /etc/passwd | grep jsnow
-              grep -i linux *.txt
-              grep -v ^#  /etc/ssh/sshd_config | grep .
-              grep -B3 -A3 error /var/log/messages
-              grep -v ^$ /etc/ssh/sshd_config
-
-grubby        update boot parameters kernels
-              grubby –update-kernel=ALL –args=”console=ttyS0″
 
 head          show the first n lines in a file
               head -100 /var/log/messages
