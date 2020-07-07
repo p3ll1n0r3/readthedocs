@@ -169,7 +169,7 @@ ip            	manipulate runtime ip			ip addr help |br|
               						ip route add default via 172.16.11.1 dev ens3 |br|
               						ip route add 192.0.2.1/24 via 10.0.0.1 dev eth0 |br|
 
-iscsiadm      	iscsi initiator admin |br|              	iscsiadm -m discovery -t st -p 192.168.1.75 |br|
+iscsiadm      	iscsi initiator admin |br|              iscsiadm -m discovery -t st -p 192.168.1.75 |br|
               						iscsiadm -m node T iqn.2015-02.org.bigbadwolf:system1 -p 192.168.1.75:3260 -l |br|
 
 journalctl    	view system logs on systemd		journalctl -f |br|
@@ -182,121 +182,89 @@ journalctl    	view system logs on systemd		journalctl -f |br|
               						journalctl -u sshd.service -o json-pretty |br|
               						journalctl -u sshd.service -o verbose |br|
 
-sha1sum         calculate hash checksum |br|  
-sha224sum       calculate hash checksum |br|
-sha256sum       calculate hash checksum |br|
-sha384sum       calculate hash checksum |br|
-sha512sum       calculate hash checksum |br|		sha256sum /iso/archlinux.iso |br|
-                					sha256sum *.tar > sha256sum.txt |br|
-                					sha256sum -c sha256sum.txt |br|
 
-ssh             secure shell connection |br|		ssh jsnow@secret.org |br|
-                					ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
-                					ssh -Xa jsnow@secret.org |br|
-                  					ssh -p 2022 secret.org |br|
-                  					ssh -Q {cipher|mac|kex} secret.org |br|
-wget            get noninteractive network		wget http://www.google.com |br| 
-		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
-                                    			wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
+ln            	create links |br|              		ln /etc/hosts computers |br|
+              						ln -s /etc/hosts computers |br|
+
+localectl     	set and view locale settings |br|	localectl list-keymaps |br|
+              						localectl list-locales |br|
+              						localectl set-keymap sv-latin1 |br|
+              						localectl set-locale LANG="en_US.utf8" |br|
+
+locate        	find files in database |br|
+
+ls            	list files/directories |br|		ls -latr |br|
+              						ls -lah |br|
+              						ls -d [!a-f]* |br|
+              						ls -il * |br|
+
+lsblk         	list block devices |br|
+
+lshw          	list hardware |br|
+
+lscpu         	list cpu info |br|
+
+lslocks       	list system locks |br|
+
+lsmem         	list memory |br|
+
+lsmod         	list status current loaded 
+		modules |br|
+
+lsof          	list open files |br|			lsof -p 616 |br|
+              						lsof /dev/sda2 |br|
+              						lsof /var/log/locked-logfile.log |br|
+
+lspci         	list pci devices |br|
+
+lsscsi        	list scsi devices |br|
+
+lsusb         	list usb devices |br|
+
+lvcreate      	create logical volume |br|		lvcreate -L 100GB -n backup rootvg |br|
+              						lvcreate -l 100 -n lv_100extends rootvg |br|
+              						lvcreate -l 100%FREE -n lv_100procent_available rootvg |br|
+
+lvdisplay	list logical volumes with details |br|
+
+lvextend	logical volume extend |br|		lvextend -size 200M -r /dev/vg/lv_xfs |br|
+              						lvextend -L +100M -r /dev/mapper/rootvg-root-100MB-lv |br|
+              						lvextend -l 50 -r /dev/mapper/rootvg-my50extend-lv |br|
+              						lvextend -l 100%FREE -r /dev/mapper/rootvg-home-rest-of-available-space-in-vg |br|
+
+lvmdiskscan   	list devices that may be used as 
+		physical volumes |br|
+
+lvs		list logical volumes |br|
+
+md5sum        	calculate md5 checksum |br|		md5sum /iso/archlinux.iso |br|
+
+mkswap        	create a swap partition |br|		makeswap /dev/vg/lv_swap2 |br|
+
+man           	man pages |br|				man nmcli-examples |br|
+              						man teamd.conf |br|
+              						man 5 firewalld.richlanguages |br|
+              						man 7 signal |br|
+              						man -k passwd  |br|
+
+mkdir         	make directory |br|			mkdir /var/log/httpd |br|
+              						mkdir -p /srv |br|
+
+mount         	mount filesystem |br|            	mount -a |br|
+              						mount /www |br|
+              						mount /dev/cdrom /mnt |br|
+              						mount -o rw /srv/virtualmachines |br|
+
+nft           	allows configuration of tables, chains	nft add table inet filter  # Add a new table with family "inet" and table "filter" |br| 
+		and rules provided by the Linux kernel	nft add chain inet filter INPUT { type filter hook input priority 0 \\; policy accept \\; } # Add a new chain to accept all inbound traffic |br|
+		firewall. |br|				nft add rule inet filter INPUT tcp dport \{ ssh, http, https\ } accept  # Add a new rule to accept several TCP ports |br|
+              						nft add rule inet filter INPUT drop # Rule drop everything else |br|
+              						nft list ruleset # View current configuration |br|
+              						nft --handlr --numeric list chain # Show rule handles |br|
+              						nft delete rult inet filter  input handle 3 # Delete a rule |br|
+              						nft list ruleset > /etc/nftables.conf # Save current configuration |br|
 =============== ======================================= ===========================================================
- 
 
-audit2allow   create an SELinux allow rule |br|
-              grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
-
-
-ln            create links
-              ln /etc/hosts computers
-              ln -s /etc/hosts computers
-
-localectl     set and view locale settings
-              localectl list-keymaps
-              localectl list-locales
-              localectl set-keymap sv-latin1
-              localectl set-locale LANG="en_US.utf8"
-
-locate        find files in database
-
-ls            list files/directories
-              ls -latr
-              ls -lah
-              ls -d [!a-f]*
-              ls -il *
-
-lsblk         list block devices
-
-lshw          list hardware
-
-lscpu         list cpu info
-
-lslocks       list system locks
-
-lsmem         list memory
-
-lsmod         list status current loaded modules
-
-lsof          list open files
-              lsof -p 616
-              lsof /dev/sda2
-              lsof /var/log/locked-logfile.log
-
-lspci         list pci devices
-
-lsscsi        list scsi devices
-
-lsusb         list usb devices
-
-lvcreate      create logical volume
-              lvcreate -L 100GB -n backup rootvg
-              lvcreate -l 100 -n lv_100extends rootvg
-              lvcreate -l 100%FREE -n lv_100procent_available rootvg
-
-lvdisplay	  list logical volumes with details
-
-lvextend 	  logical volume extend
-              lvextend -size 200M -r /dev/vg/lv_xfs
-              lvextend -L +100M -r /dev/mapper/rootvg-root-100MB-lv
-              lvextend -l 50 -r /dev/mapper/rootvg-my50extend-lv
-              lvextend -l 100%FREE -r /dev/mapper/rootvg-home-rest-of-available-space-in-vg
-
-lvmdiskscan   list devices that may be used as physical volumes
-
-lvs			  list logical volumes
-
-md5sum        calculate md5 checksum
-              md5sum /iso/archlinux.iso
-
-mkswap        create a swap partition
-              makeswap /dev/vg/lv_swap2
-
-man           man pages
-              man nmcli-examples
-              man teamd.conf
-              man 5 firewalld.richlanguages
-              man 7 signal
-              man -k passwd 
-
-mkdir         make directory
-              mkdir /var/log/httpd
-              mkdir -p /srv
-
-mount         mount filesystem
-              mount -a
-              mount /www
-              mount /dev/cdrom /mnt
-              mount -o rw /srv/virtualmachines
-
-nft           allows configuration of tables, chains and rules provided by the Linux kernel firewall.
-              nft add table inet filter                             Add a new table with family "inet" and table "filter"
-              nft add chain inet filter INPUT { type filter hook input 
-                priority 0 \; policy accept \; }                     Add a new chain to accept all inbound traffic
-              nft add rule inet filter INPUT tcp dport \{ ssh, http, 
-                https\ } accept                                      Add a new rule to accept several TCP ports
-              nft add rule inet filter INPUT drop                   Rule drop everything else
-              nft list ruleset                                      View current configuration
-              nft --handlr --numeric list chain                     Show rule handles
-              nft delete rult inet filter  input handle 3           Delete a rule
-              nft list ruleset > /etc/nftables.conf                 Save current configuration
 
 nmcli         network manager CLI
               nmcli con show
@@ -448,12 +416,28 @@ sort          sort input
               sort -n
               sort -f
 
-# ssh           secure shell connection
-#               ssh jsnow@ix1-jmp03.ad.dcinf.se
-#               ssh -vvv -i ~/.ssh/id_rsa jsnow@ix1-jmp03.ad.dcinf.se
-#               ssh -Xa jsnow@ix1-jmp03.ad.dcinf.se
-#               ssh -p 2022 delta-echo.example.com
-#               ssh -Q {cipher|mac|kex} server
+
+
+
+
+
+
+
+sha1sum         calculate hash checksum |br|  
+sha224sum       calculate hash checksum |br|
+sha256sum       calculate hash checksum |br|
+sha384sum       calculate hash checksum |br|
+sha512sum       calculate hash checksum |br|		sha256sum /iso/archlinux.iso |br|
+                					sha256sum *.tar > sha256sum.txt |br|
+                					sha256sum -c sha256sum.txt |br|
+
+ssh             secure shell connection |br|		ssh jsnow@secret.org |br|
+                					ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
+                					ssh -Xa jsnow@secret.org |br|
+                  					ssh -p 2022 secret.org |br|
+                  					ssh -Q {cipher|mac|kex} secret.org |br|
+
+
 
 sshfs         filesystem client based on ssh
               sshfs jsnow@10.1.1.1:/ /mnt
@@ -584,11 +568,6 @@ wc            count lines, words or bytes
               wc -b filename                        # Count number of bytes in file
               wc -m filename                        # Count number of bytes in file (taking multibyte character sets into account)
 
-# wget          get noninteracitve network download
-#               wget http://www.google.com
-#               wget -O /home/helloworld.txt http://wwww.getfile.com/index.html
-#               wget --no-check-certificate https://site-without-signed-certificate.com/
-
 whereis       find files in database
 
 which         find files in database
@@ -638,3 +617,6 @@ zypper      SUSE package manager
             zypper refresh
             zypper lu
 
+wget            get noninteractive network		wget http://www.google.com |br| 
+		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
+                                    			wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
