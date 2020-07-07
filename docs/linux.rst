@@ -435,140 +435,124 @@ systemctl     	systemd control |br|			systemctl list-unit-files --state=enabled 
               						systemctl --failed |br|
 =============== ======================================= ===========================================================
 
-tar           manage tarballs
-              tar -xvf microcode-20180108.tgz -C /tmp
-              tar -cf etcbackup.tar /etc/*
-              tar -cvzf /tmp/tar.tgz /usr/local
-              tar -tvf etc.tgz 
-              tar -xvf etc.tgz -C / etc/hosts
+tar           	manage tarballs |br|			tar -xvf microcode-20180108.tgz -C /tmp |br|
+              						tar -cf etcbackup.tar /etc/* |br|
+              						tar -cvzf /tmp/tar.tgz /usr/local |br|
+              						tar -tvf etc.tgz  |br|
+              						tar -xvf etc.tgz -C / etc/hosts |br|
 
-targetcli     manage and setup iscsi targets
-              targetcli /backstores/block create block1 /dev/iscsi_storage/iscsi_storage_lv                   
-              targetcli /iscsi create iqn.2015-02.se.hellden:system1
-              targetcli /iscsi/iqn.2015-02.se.hellden:system1/tpg1/acls create iqn.2015-02.se.hellden:system2
-              targetcli /iscsi/iqn.2015-02.se.hellden:system1/tpg1/luns create /backstores/block/block1       
-              targetcli /iscsi/iqn.2015-02.se.hellden:system1/tpg1/portals delete 0.0.0.0 3260
-              targetcli /iscsi/iqn.2015-02.se.hellden:system1/tpg1/portals create 192.168.1.75 3260
-              targetcli saveconfig
+targetcli     	manage and setup iscsi targets |br|	targetcli /backstores/block create block1 /dev/iscsi_storage/iscsi_storage_lv |br|
+              						targetcli /iscsi create iqn.2015-02.org.secretbunker:system1 |br|
+              						targetcli /iscsi/iqn.2015-02.org.secretbunker:system1/tpg1/acls create iqn.2015-02.org.secretbunker:system2 |br|
+              						targetcli /iscsi/iqn.2015-02.org.secretbunker:system1/tpg1/luns create /backstores/block/block1 |br|
+              						targetcli /iscsi/iqn.2015-02.org.secretbunker:system1/tpg1/portals delete 0.0.0.0 3260 |br|
+              						targetcli /iscsi/iqn.2015-02.org.secretbunker:system1/tpg1/portals create 192.168.1.75 3260 |br|
+              						targetcli saveconfig |br|
 
-tail          display the last n lines in a file
-              tail -200 /var/log/messages
-              tail -f /var/log/messages
+tail          	display the last n lines  |br|		tail -200 /var/log/messages |br|
+		in a file |br|				tail -f /var/log/messages |br|
 
-tcpdump       monitor/capture network data
-              tcpdump "host 10.135.246.129 and port 601" -vvvv -A
+tcpdump       	monitor/capture network data |br|	tcpdump "host 10.135.246.129 and port 601" -vvvv -A |br|
 
-teamdctl      team connections control - /usr/share/doc/teamd-1.27/example_configs
-              teamdctl nm-team state
+teamdctl      	team connections control |br|		teamdctl nm-team state |br|
+		/usr/share/doc/teamd-x.xx  |br|
+		/example_configs |br|
+         
+timedatectl   	set and view time date |br|		timedatectl list-timezones |br|
+              						timedatectl set-timezone Europe/Stockholm |br|
+             	 					timedatectl status |br|
 
-timedatectl   set and view time date
-              timedatectl list-timezones
-              timedatectl set-timezone Europe/Stockholm
-              timedatectl status
+touch         	updates access / |br|			touch helloworld.txt |br|
+		modification times |br|
+              
+tr            	translate |br|				echo "Hello World" \| tr a-z A-Z |br|
+              						echo "Hello World" | tr [:lower:] [:upper:] |br|
 
-touch         updates access / modification times
-              touch helloworld.txt
+udevadm       	monitor in realtime for udev |br|	udevadm monitor |br|
+		watch system changes (add/remove |br|
+		devices or devices reporting |br|
+		changes) |br|
+              
+umount        	unmount a filesystem |br|		umount /mnt
 
-tr            translate
-              echo "Hello World" | tr a-z A-Z
-              echo "Hello World" | tr [:lower:] [:upper:]
+uname         	print detailed information  |br|	uname -a  |br|
+		about kernel and system  |br|		uname -r  |br|
 
-udevadm       monitor in realtime for udev watch system changes (add/remove devices or devices reporting changes)
-              udevadm monitor
+updatedb      	update the locate database |br|
 
-umount        unmount a filesystem
-              umount /mnt
+useradd       	add linux user |br|			useradd -c "BigBadWolf/NSA" -m bwolf |br|
+              						useradd -u 2000 bwolf |br|
 
-uname         print detailed information about kernel and system
-              uname -a
+usermod       	modify user parameters |br|		usermod -aG sudousers bwolf |br|
+              						usermod -e 2018-09-02 bwolf
 
-updatedb      update the locate database
+vgcreate      	create volume group |br|          	vgcreate rootvg /dev/sda1  |br|
+              						vgcreate -s 16M vg_16M_extends /dev/sda2  |br|
 
-useradd       add linux user
-              useradd -c "John Snow/IBM" -m jsnow
-              useradd -u 2000 jsnow
+vgs           	show volume groups |br|
 
-usermod       modify user parameters
-              usermod -aG sudousers jsnow
-              usermod -e 2018-09-02 jsnow
+vgdisplay     	list volume group details |br|
 
-vgcreate      create volume group
-              vgcreate rootvg /dev/sda1
-              vgcreate -s 16M vg_16M_extends /dev/sda2
+vgscan        	scan for existing volume |br|
+		groups |br|
 
-vgs           show volume groups
+virsh         	qemu/kvm management |br|		virsh list --all |br|
+              						virsh edit web2-server |br|
+              						virsh start web2-server |br|
+              						virsh autostart web2-server |br|
+              						virsh autostart --disable web2-server |br|
+              						virsh undefine web2-server |br|
 
-vgdisplay     list volume group details
+virt-install  	create/install new qemu guest |br|	virt-install -n test -r 1024 --vcpus=1 --os-variant=centos7.5 --accelerate --nographics -v  --disk path=/var/lib/libvirt/shared-storage/test.img,size=20 --extra-args "console=ttyS0" --location /iso/CentOS-7.5-x86_64-netinstall.iso |br|
+              						virt-install -n test -r 1024 --vcpus=1 --accelerate --nographics -v --disk path=/var/lib/libvirt/images/test.img,size=20 --console pty,target_type=serial --cdrom /iso/archlinux-2018.06.01-x86_64.iso |br|
 
-vgscan        scan for existing volume groups
+wc            	count lines, words or bytes |br|	cat filename \| wc - l |br|
+              						wc -c filename |br|
+              						wc -b filename  |br|
+              						wc -m filename  |br|
+whereis       	find files in database |br|
 
-virsh         qemu/kvm management
-              virsh list --all
-              virsh edit web2-server
-              virsh start web2-server
-              virsh autostart web2-server
-              virsh autostart --disable web2-server
-              virsh undefine web2-server
+which         	find files in database |br|
 
-virt-install  create/install new qemu guest
-              virt-install -n test -r 1024 --vcpus=1 --os-variant=centos7.5 --accelerate --nographics -v  --disk path=/var/lib/libvirt/shared-storage/test.img,size=20 --extra-args "console=ttyS0" --location /iso/CentOS-7.5-x86_64-netinstall.iso
-              virt-install -n test -r 1024 --vcpus=1 --accelerate --nographics -v --disk path=/var/lib/libvirt/images/test.img,size=20 --console pty,target_type=serial --cdrom /iso/archlinux-2018.06.01-x86_64.iso
+xfs_admin	manage xfs filesystems |br|		xfs_admin -L "my disklabel" /dev/mapper/rootvg-root |br|
 
-wc            count lines, words or bytes
-              cat filename | wc - l                 # Count number of line for STDIN
-              wc -c filename                        # Count number of characters in file
-              wc -b filename                        # Count number of bytes in file
-              wc -m filename                        # Count number of bytes in file (taking multibyte character sets into account)
+xrandr        	manage output display for X11 |br|	xrandr --output HDMI-2 --auto --output eDP-1 --auto --left-of HDMI-2 |br|
+              						xrandr --output Virtual-0 --mode 1920x1080 |br|
+							xrandr --query |br|
 
-whereis       find files in database
+xrdb          	xrdb tool configuration |br|		xrdb -merge ~/.Xresources |br|
 
-which         find files in database
+xset          	set x tool |br|				xset r rate 300 50 |br|
 
-xfs_admin	manage      xfs filesystems
-              xfs_admin -L "my disklabel" /dev/mapper/rootvg-root
+xxd           	hexdecimal conversions |br|
 
-xrandr        manage output display for X11
-              xrandr --output HDMI-2 --auto --output eDP-1 --auto --left-of HDMI-2
-              xrandr --output Virtual-0 --mode 1920x1080
-
-xrdb          import/process/reload .Xresources configuration
-              xrdb -merge ~/.Xresources
-
-xset          set keyboard speed
-              xset r rate 300 50
-
-xxd           hexdecimal conversions
-
-yum           yum manager (http://cve.mitre.org/)
-              yum repolist
-              yum clean all
-              yum update -y
-              yum --disable=\* --enable=c7-media install bind-utils
-              yum history
-              yum install --downloadonly --downloaddir=/root/downloadpackages
-              yum updateinfo list available
-              yum updateinfo list security all
-              yum updateinfo list security sec
-              yum updateinfo list security installed
-              yum info-sec
-              yum update --security
-              yum update-minimal --security
-              yum update --cve CVE-2008-0947
-              yum updateinfo list
-              yum update --advisory=RHSA-2014:0159
-              yum updateinfo RHSA-2014:0159
-              yum updateinfo list cves
+yum           	yum manager |br|			yum repolist
+              						yum clean all
+              						yum update -y
+              						yum --disable=\\* --enable=c7-media install bind-utils
+             	 					yum history
+              						yum install --downloadonly --downloaddir=/root/downloadpackages
+              						yum updateinfo list available
+              						yum updateinfo list security all
+              						yum updateinfo list security sec
+              						yum updateinfo list security installed
+              						yum info-sec
+              						yum update --security
+              						yum update-minimal --security
+              						yum update --cve CVE-2008-0947
+              						yum updateinfo list
+              						yum update --advisory=RHSA-2014:0159
+              						yum updateinfo RHSA-2014:0159
+              						yum updateinfo list cves
 
 
-yum-config-manager    mange repos
-            yum-config-manager --add-repo helloworld
-            yum-config-manager --disable c7-media
+yum-config-manager    mange repos			yum-config-manager --add-repo helloworld |br|
+            						yum-config-manager --disable c7-media |br|
 
-zypper      SUSE package manager
-            zypper in packagename
-            zypper refresh
-            zypper lu
+zypper      	SUSE package manager |br|		zypper in packagename |br|
+            						zypper refresh |br|
+            						zypper lu |br|
 
-wget            get noninteractive network		wget http://www.google.com |br| 
+wget            get noninteractive network |br|		wget http://www.google.com |br| 
 		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
                                     			wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
