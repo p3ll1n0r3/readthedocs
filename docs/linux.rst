@@ -544,9 +544,8 @@ yum           	yum manager |br|			yum repolist
               						yum updateinfo RHSA-2014:0159
               						yum updateinfo list cves
 
-
-yum-config-manager    mange repos |br|			yum-config-manager --add-repo helloworld |br|
-            						yum-config-manager --disable c7-media |br|
+yum-config |br|	mange repos |br|			yum-config-manager --add-repo helloworld |br|
+-manager						yum-config-manager --disable c7-media |br|
 
 zypper      	SUSE package manager |br|		zypper in packagename |br|
             						zypper refresh |br|
