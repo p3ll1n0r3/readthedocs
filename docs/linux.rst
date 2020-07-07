@@ -63,6 +63,31 @@ curl          	get data from url |br|			curl -Ok https://www.google.com |br|
 cut           	cut part of file |br|			cut -f 1 cities.txt |br|
               						cut -f 1 -d : /etc/passwd
 
+
+date          	print date |br|				date -d "+1month" |br|
+              						date '+%Y%m%d-%H:%M' |br|
+
+diff          	Produce a differenct between		diff /etc /backup/etc |br| 
+		files/directories |br|			diff <(ls -a) <(ls -A)                # Difference of output between two ls commands |br|
+            
+dig           	dns lookup |br|				dig +dnssec +multi @8.8.8.8.8 www.google.com |br|
+              						dig +short www.dn.se |br|
+              						dig -x 2.18.74.134 |br|
+              						dig @8.8.8.8 www.dn.se |br|
+              						dig www.google.com SOA |br|
+
+dd            	convert and copy a file (usually 	dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
+		write to/from cdrom/iso/usb |br|	dd status=progress if=/dev/vda | ssh 172.16.11.10 dd of=/dev/vda |br|
+
+df            	display filesystems |br|		df -h |br|
+
+dmsetup       	Manage dm disks |br|			dmsetup info /dev/dm-5 |br|
+
+drill         nslookup dnssec |br|            		drill -DT www.google.com |br|
+
+du            files/directories size calculation |br|	du -sh * |br|
+              						du -a \| sort -n -r \| head -n 5  |br|
+
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
@@ -89,38 +114,6 @@ wget            get noninteractive network		wget http://www.google.com |br|
 audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
 
-
-date          print date |br|
-              date -d "+1month" |br|
-              date '+%Y%m%d-%H:%M'
-
-diff          Produce a differenct between files/directories |br|
-              diff /etc /backup/etc |br|
-              diff <(ls -a) <(ls -A)                # Difference of output between two ls commands
-
-dig           dns lookup
-              dig +dnssec +multi @8.8.8.8.8 www.google.com
-              dig +short www.dn.se
-              dig -x 2.18.74.134
-              dig @8.8.8.8 www.dn.se
-              dig www.google.com SOA
-
-dd            convert and copy a file (usually write to/from cdrom/iso/usb
-              dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M
-              dd status=progress if=/dev/vda | ssh 172.16.11.10 dd of=/dev/vda
-
-df            display filesystems
-              df -h
-
-dmsetup       Manage dm disks		
-              dmsetup info /dev/dm-5
-
-drill         nslookup dnssec
-              drill -DT www.google.com
-
-du            files/directories size calculation 
-              du -sh *
-              du -a | sort -n -r | head -n 5
 
 egrep         grep with regexp
               egrep -v "^$|^#" /etc/ssh/sshd_config
