@@ -233,7 +233,7 @@ lvextend	logical volume extend |br|		lvextend -size 200M -r /dev/vg/lv_xfs |br|
               						lvextend -l 50 -r /dev/mapper/rootvg-my50extend-lv |br|
               						lvextend -l 100%FREE -r /dev/mapper/rootvg-home-rest-of-available-space-in-vg |br|
 
-lvmdiskscan   	list devices that may be 
+lvmdiskscan   	list devices that may be |br|
 		used as physical volumes |br|
 
 lvs		list logical volumes |br|
@@ -384,7 +384,6 @@ sha224sum |br|						sha256sum *.tar > sha256sum.txt |br|
 sha256sum |br|						sha256sum -c sha256sum.txt |br|
 sha384sum |br|
 sha512sum |br|		
-=============== ======================================= ===========================================================
 
 smbpasswd	set samba user password	 |br|		smbpasswd -a robby |br|
 
@@ -434,6 +433,7 @@ systemctl     	systemd control |br|			systemctl list-unit-files --state=enabled 
               						systemctl set-default graphical.target |br|
               						systemctl isolate multi-user.target |br|
               						systemctl --failed |br|
+=============== ======================================= ===========================================================
 
 tar           manage tarballs
               tar -xvf microcode-20180108.tgz -C /tmp
