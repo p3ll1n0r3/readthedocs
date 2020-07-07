@@ -61,8 +61,7 @@ curl          	get data from url |br|			curl -Ok https://www.google.com |br|
               						curl --insecure  -L -v -s -o /dev/null https://www.google.com/ |br|
 
 cut           	cut part of file |br|			cut -f 1 cities.txt |br|
-              						cut -f 1 -d : /etc/passwd
-
+              						cut -f 1 -d : /etc/passwd |br|
 
 date          	print date |br|				date -d "+1month" |br|
               						date '+%Y%m%d-%H:%M' |br|
@@ -83,9 +82,9 @@ df            	display filesystems |br|		df -h |br|
 
 dmsetup       	Manage dm disks |br|			dmsetup info /dev/dm-5 |br|
 
-drill         nslookup dnssec |br|            		drill -DT www.google.com |br|
+drill         	nslookup dnssec |br|           		drill -DT www.google.com |br|
 
-du            files/directories size calculation |br|	du -sh * |br|
+du            	files/directories size calculation |br|	du -sh * |br|
               						du -a \| sort -n -r \| head -n 5  |br|
 
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
