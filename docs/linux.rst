@@ -525,24 +525,24 @@ xset          	set x tool |br|				xset r rate 300 50 |br|
 
 xxd           	hexdecimal conversions |br|
 
-yum           	yum manager |br|			yum repolist
-              						yum clean all
-              						yum update -y
-              						yum --disable=\\* --enable=c7-media install bind-utils
-             	 					yum history
-              						yum install --downloadonly --downloaddir=/root/downloadpackages
-              						yum updateinfo list available
-              						yum updateinfo list security all
-              						yum updateinfo list security sec
-              						yum updateinfo list security installed
-              						yum info-sec
-              						yum update --security
-              						yum update-minimal --security
-              						yum update --cve CVE-2008-0947
-              						yum updateinfo list
-              						yum update --advisory=RHSA-2014:0159
-              						yum updateinfo RHSA-2014:0159
-              						yum updateinfo list cves
+yum           	yum manager |br|			yum repolist |br|
+              						yum clean all |br|
+              						yum update -y |br|
+              						yum --disable=\\* --enable=c7-media install bind-utils |br|
+             	 					yum history |br|
+              						yum install --downloadonly --downloaddir=/root/downloadpackages |br|
+              						yum updateinfo list available |br|
+              						yum updateinfo list security all |br|
+              						yum updateinfo list security sec |br|
+              						yum updateinfo list security installed |br|
+              						yum info-sec |br|
+              						yum update --security |br|
+              						yum update-minimal --security |br|
+              						yum update --cve CVE-2008-0947 |br|
+              						yum updateinfo list |br|
+              						yum update --advisory=RHSA-2014:0159 |br|
+              						yum updateinfo RHSA-2014:0159 |br|
+              						yum updateinfo list cves |br|
 
 yum-config |br|	mange repos |br|			yum-config-manager --add-repo helloworld |br|
 -manager						yum-config-manager --disable c7-media |br|
