@@ -336,88 +336,64 @@ renice        	set new nice value for process |br|     renice -n -10 -p 1519 |br
 repoquery     	query package at repository |br|	repoquery -ql bind-utils |br|
 
 restorecon    	restore SElinux labeling on files |br|	restorecon -R /xfs |br|
+
+rkhunter      	root kit hunter |br|			rkhunter --update |br|
+              						rkhunter --propugd |br|
+              						rkhunter --check -sk |br|
+
+rm            	remove files/directories |br|		rm -rf etcbackup.tar |br|
+              						find . -inum 210666 -exec rm -i {} i\\; # delete file with inodenummer |br|
+
+rpm           	manage rpm packages |br|		rpm -qa |br|
+              						rpm -qc chrony |br|
+              						rpm -qf /etc/passwd |br|
+              						rpm -qd chrony |br|
+              						rpm -ql setup |br|
+              						rpm -q --scripts setup |br|
+
+rsync         	sync and copy tool |br|			rsync -aAXvS --info=progress2 --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found/*","/backup/*"} / /backup |br|
+
+sar           	collect, report, or save |br|		sar -A |br|
+		system activity information
+
+scp           	secure copy files |br|			scp e603500@secretbunker.se:~/test.sh .  |br|
+              						scp -P 2022 secret.txt bigbadwolf@remote-server.com:/~  |br|
+
+sed           	string editor  |br|			sed -Ei.bak '/^\\s*(#|$)/d' /etc/sshd/sshd_config |br|
+              						sed -n /^root/p /etc/passwd  |br|
+              						sed -i 's/linda/juliet/g' /etc/passwd |br|
+
+semanage      	SELinux set labelling on |br|		semanage fcontext -a -t user_home_dir_t "/xfs(/.*)?" |br|
+		functions/files/directories |br|	semanage port -a -t http_port_t -p tcp 8999 |br|
+         						semanage port -d -t http_port_t -p tcp  |br|
+              						semanage port -l |br|
+              						semanage port -lC |br|
+              						semanage permissive -l |br|
+
+setfacl       	set file access list |br|		setfacl -R -m u:david:rwx /home/jsnow |br|
+              						setfacl -m d:g:sales:rx /account |br|
+              						setfacl -m d:g:david::- /account ???? |br|
+
+setsebool	set SELinux boolean value |br|		setsebool -P httpd_use_nfs on |br|
+              						setsebool -P named_write_master_zones on |br|
+
+sha1sum |br|	calculate hash checksum |br|  		sha256sum /iso/archlinux.iso |br|
+sha224sum |br|						sha256sum *.tar > sha256sum.txt |br|
+sha256sum |br|						sha256sum -c sha256sum.txt |br|
+sha384sum |br|
+sha512sum |br|		
 =============== ======================================= ===========================================================
 
-rkhunter      root kit hunter
-              rkhunter --update
-              rkhunter --propugd
-              rkhunter --check -sk
 
-rm            remove files/directories
-              rm -rf etcbackup.tar
-              find . -inum 210666 -exec rm -i {} \;           # delete file with inodenummer
+smbpasswd     	set samba user password
+              	smbpasswd -a robby
 
-rpm           manage rpm packages
-              rpm -qa
-              rpm -qc chrony
-              rpm -qf /etc/passwd
-              rpm -qd chrony
-              rpm -ql setup
-              rpm -q --scripts setup
+socat         	multipurpose relay (SOcket CAT
+              	exec socat tcp-connect:192.168.1.100:2604 file:`tty`,raw,echo=0
 
-rsync         sync and copy tool
-              rsync -aAXvS --info=progress2 --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found/*","/backup/*"} / /backup
-
-sar           collect, report, or save system activity information
-              sar -A
-
-scp           secure copy files
-              scp e603500@ix1-jmp03.ad.dcinf.se:~/test.sh .
-              scp -P 2022 secret.txt michael@remote-server.com:/~
-
-sed           string editor
-              sed -Ei.bak '/^\s*(#|$)/d' /etc/sshd/sshd_config
-              sed -n /^root/p /etc/passwd
-              sed -i 's/linda/juliet/g' /etc/passwd
-
-semanage      SELinux set labelling on functions/files/directories
-              semanage fcontext -a -t user_home_dir_t "/xfs(/.*)?"
-              semanage port -a -t http_port_t -p tcp 8999
-              semanage port -d -t http_port_t -p tcp 
-              semanage port -l
-              semanage port -lC
-              semanage permissive -l
-
-setfacl       set file access list
-              setfacl -R -m u:david:rwx /home/jsnow
-              setfacl -m d:g:sales:rx /account
-              setfacl -m d:g:david::- /account ????
-
-setsebool	    set SELinux boolean value
-              setsebool -P httpd_use_nfs on
-              setsebool -P named_write_master_zones on
-
-sha1sum
-sha256sum
-sha512sum     calculate checksum of file
-              sha256sum /iso/archlinux.iso
-              sha25sum *.iso > sha256sum.txt
-              sha256sum -c sha256sum.txt
-
-smbpasswd     set samba user password
-              smbpasswd -a robby
-
-socat         multipurpose relay (SOcket CAT
-              exec socat tcp-connect:192.168.1.100:2604 file:`tty`,raw,echo=0
-
-sort          sort input
-              sort -n
-              sort -f
-
-
-
-
-
-
-
-
-sha1sum         calculate hash checksum |br|  
-sha224sum       calculate hash checksum |br|
-sha256sum       calculate hash checksum |br|
-sha384sum       calculate hash checksum |br|
-sha512sum       calculate hash checksum |br|		sha256sum /iso/archlinux.iso |br|
-                					sha256sum *.tar > sha256sum.txt |br|
-                					sha256sum -c sha256sum.txt |br|
+sort          	sort input
+              	sort -n
+              	sort -f
 
 ssh             secure shell connection |br|		ssh jsnow@secret.org |br|
                 					ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
