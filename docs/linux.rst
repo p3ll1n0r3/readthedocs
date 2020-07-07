@@ -75,7 +75,7 @@ dig           	dns lookup |br|				dig +dnssec +multi @8.8.8.8.8 www.google.com |
               						dig @8.8.8.8 www.dn.se |br|
               						dig www.google.com SOA |br|
 
-dd            	convert and copy a file (usually 	dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
+dd            	convert and copy a file (usually |br| 	dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
 		write to/from cdrom/iso/usb |br|	dd status=progress if=/dev/vda | ssh 172.16.11.10 dd of=/dev/vda |br|
 
 df            	display filesystems |br|		df -h |br|
@@ -293,60 +293,50 @@ nmcli         	network manager CLI |br|		nmcli con show |br|
               						nmcli general permissions |br|
               						nmcli general logging |br|
               						nmcli con delete uuid d49f78de-68d2-412d-80bc-0e238d380b8e |br|
-=============== ======================================= ===========================================================
 
-nmap          network / open ports scanner/mapper
-              nmap -sV -p 22 localhost
+nmap          	network / open ports scanner/mapper|br|	nmap -sV -p 22 localhost |br|
 
-nmtui         network manager text menu
+nmtui         	network manager text menu |br|
 
-osinfo-query  qemu-kvm tool identify correct identifier
-              osinfo-query os
+osinfo-query  	qemu-kvm tool identify |br|		osinfo-query os |br|
+		correct identifier |br|
 
-openssl       create / manipulate and get certificates
-              openssl s_client -connect www.google.com:443 -showcerts < /dev/null 2> /dev/null |openssl x509 -outform PEM
+openssl       	create / manipulate and get |br|	openssl s_client -connect www.google.com:443 -showcerts < /dev/null 2> /dev/null \|openssl x509 -outform PEM
+		certificates |br|
+              
+passwd        	set password for user |br|		passwd jsnow |br|
+							passwd -e 90 jsnow |br|
+              						passwd -u |br|
+              						passwd -L ?  |br|
 
-passwd        set password for user
-              passwd jsnow
-              passwd -e 90 jsnow
-              passwd -u
-              passwd -L ?
+pip           	python module installer |br|		pip install -r requirements.txt |br|
+              						pip install {package-name} |br|
+              						pip install git+https://github.com/Gallopsled/pwntools.git@dev |br|
 
-pip           python module installer
-              pip install -r requirements.txt
-              pip install {package-name}
-              pip install git+https://github.com/Gallopsled/pwntools.git@dev
+pkaction      	manage polkit actions |br|              pkaction --action-id org.freedesktop.NetworkManager.reload --verbose |br|
 
-pkaction      manage polkit actions
-              pkaction --action-id org.freedesktop.NetworkManager.reload --verbose
+ps            	process viewer |br|			ps -ef |br|
+              						ps fax |br|
+              						ps aux \| awk '{ print $2 }' |br|
 
-ps            process viewer
-              ps -ef
-              ps fax
-              ps aux | awk '{ print $2 }'
+pvcreate      	create lvm physical volume |br|		pvcreate /dev/sda1 |br|
 
-pvcreate      create lvm physical volume
-              pvcreate /dev/sda1
+pvdisplay     	list physical volumes details |br|
 
-pvdisplay     list physical volumes details
+pvs           	show physical volumes |br|
 
-pvs           show physical volumes
+pwd           	print working directory |br|
 
-pwd           print working directory
-
-python        python programming language
-              python -m venv django-project
-              python -c 'import time;print(time.ctime(1565920843.452))'
+python        	python programming language |br|	python -m venv django-project |br|
+              						python -c 'import time;print(time.ctime(1565920843.452))' |br|
 			
-renice        set new nice value for process
-              renice -n -10 -p 1519
-              renice +10 1519
+renice        	set new nice value for process |br|     renice -n -10 -p 1519 |br|
+              						renice +10 1519  |br|
 
-repoquery     query package at repository
-              repoquery -ql bind-utils
+repoquery     	query package at repository |br|	repoquery -ql bind-utils |br|
 
-restorecon    restore SElinux labeling on files
-              restorecon -R /xfs
+restorecon    	restore SElinux labeling on files |br|	restorecon -R /xfs |br|
+=============== ======================================= ===========================================================
 
 rkhunter      root kit hunter
               rkhunter --update
