@@ -8,7 +8,7 @@ Linux Commands
 		
 =============== ======================================= ===========================================================
 command         usage					syntax				
-=============== ====================================== ===========================================================
+=============== ======================================= ===========================================================
 audit2why       why is SELinux denied |br|              audit2why -i /var/log/audit/audit.log |br|
                   					grep 1573441241.893:21782 /var/log/audit/audit.log \| audit2why |br|
  
@@ -41,14 +41,14 @@ chmod           change file permissions |br|		chmod +x file.sh |br|
                   					chmod 3770 /sales			# all group members can add/delete from folder, only owner can delete its own files  |br|
                   					chmod ug+rwxs /sales |br|
 
-chown           change file owner |br|		chown root:root file.sh |br|
+chown           change file owner |br|			chown root:root file.sh |br|
                  					chown -R root:root /root/secret |br|
 							
 grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
  
-================ ====================================== ===========================================================
+=============== ======================================= ===========================================================
                   
 
                                     
@@ -78,7 +78,6 @@ grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   wget http://www.google.com |br|
                   wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
                   wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
-================ =================================================================================================
 
 audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
