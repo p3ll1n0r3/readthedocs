@@ -5,54 +5,58 @@ Linux Commands
 
     <br>
 
-================ =================================================================================================
- command          syntax
-================ =================================================================================================
- audit2why        why is SELinux denied |br|
-                  audit2why -i /var/log/audit/audit.log |br|
-                  grep 1573441241.893:21782 /var/log/audit/audit.log \| audit2why |br|
+		
+=============== ======================================= ===========================================================
+command         usage					syntax				
+=============== ====================================== ===========================================================
+audit2why       why is SELinux denied |br|              audit2why -i /var/log/audit/audit.log |br|
+                  					grep 1573441241.893:21782 /var/log/audit/audit.log \| audit2why |br|
  
- awk              pattern scanning and processing language |br|
-                  ps aux \| awk '{ print $2 }' |br|
+awk             pattern scanning and processing		ps aux \| awk '{ print $2 }' |br| 
+ 		language |br|
+
+base64          base64 encode/decode |br|		echo "Hello World" \| base64 |br|
+							echo "SGVsbG8gV29ybGQK" \| base64 -d |br|
+							base64 -d encoded_b64.txt |br|
+blkid           locate/print block device attributes
+ 		(requires sudo) |br|
+
+cat             print content of file |br|		cat /etc/passwd |br|
+							
+chage           change/view aging rules for		chage -l jsnow |br| 
+		userid |br|
+
+chcon           change SE Linux labeling |br|		chcon -t samba_share_t /common |br|
+
+chgrp           change group owner			chgrp team secret.txt |br| 
+ 		of file/directory |br|
+
+chmod           change file permissions |br|		chmod +x file.sh |br|
+							chmod u+x file.sh |br|
+							chmod g+x file.sh |br|
+							chmod o-rxw file.sh |br|
+                  					chmod 0770 /sales			# all group members can add/delete from folder, can read/delete but not write to other's files |br|
+                  					chmod 1770 /sales			# all group members can add/delete from folder, but only owner can delete its own files |br|
+                  					chmod 2770 /sales			# all group members can add/delete from folder, read/write other's files |br|
+                  					chmod 3770 /sales			# all group members can add/delete from folder, only owner can delete its own files  |br|
+                  					chmod ug+rwxs /sales |br|
+
+chown           change file owner |br|		chown root:root file.sh |br|
+                 					chown -R root:root /root/secret |br|
+							
+grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
+                  					grep 'Hello world' document.txt |br|
+                  					grep -v ^root /etc/passwd |br|
  
- base64           base64 encode/decode |br|
-                  echo "Hello World" \| base64 |br|
-                  echo "SGVsbG8gV29ybGQK" \| base64 -d |br|
-                  base64 -d encoded_b64.txt |br|
- 
- blkid            locate/print block device attributes (requires sudo) |br|
- 
- cat              print content of file |br|
-                  cat /etc/passwd |br|
- 
- chage            change/view aging rules for userid |br|
-                  chage -l jsnow |br|
+================ ====================================== ===========================================================
                   
- chcon            change SE Linux labeling |br|
-                  chcon -t samba_share_t /common |br|
 
- chgrp            change group owner of file/directory |br|
-                  chgrp team secret.txt |br|
-
- chmod            change file permissions |br|
-                  chmod +x file.sh |br|
-                  chmod u+x file.sh |br|
-                  chmod g+x file.sh |br|
-                  chmod o-rxw file.sh |br|
-                  chmod 0770 /sales			# all group members can add/delete from folder, can read/delete but not write to other's files |br|
-                  chmod 1770 /sales			# all group members can add/delete from folder, but only owner can delete its own files |br|
-                  chmod 2770 /sales			# all group members can add/delete from folder, read/write other's files |br|
-                  chmod 3770 /sales			# all group members can add/delete from folder, only owner can delete its own files  |br|
-                  chmod ug+rwxs /sales |br|
+                                    
+                                    
                   
- chown            change file owner |br|
-                  chown root:root file.sh |br|
-                  chown -R root:root /root/secret |br|
+ 
 
- grep             find string in file(s) |br|
-                  grep -i 'DaRliNg' document.txt |br|
-                  grep 'Hello world' document.txt |br|
-                  grep -v ^root /etc/passwd |br|
+                  
  
  sha1sum          calculate hash checksum |br|  
  sha224sum        calculate hash checksum |br|
