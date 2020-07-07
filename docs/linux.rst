@@ -151,7 +151,37 @@ grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
               						grep -v ^$ /etc/ssh/sshd_config |br|
                   					grep -v ^root /etc/passwd |br|
 grubby        	update boot parameters kernels |br|	grubby –update-kernel=ALL –args=”console=ttyS0″ |br|
- 
+
+head          	show the first n lines in a file |br|	head -100 /var/log/messages |br|
+
+hostnamectl   	set hostname for system |br|		hostnamectl set-hostname mycentos.example.com |br|
+
+httpd         	apache web server |br|			httpd -t |br|
+
+ip            	manipulate runtime ip			ip addr help |br|
+		configuration |br|			ip route help |br|
+              						ip link help |br|
+              						ip a |br|
+              						ip r |br|
+              						ip -s link |br|
+              						ip addr add 172.16.11.10 dev ens3 |br|
+              						ip route add 172.16.11.0/24 dev ens3 |br|
+              						ip route add default via 172.16.11.1 dev ens3 |br|
+              						ip route add 192.0.2.1/24 via 10.0.0.1 dev eth0 |br|
+
+iscsiadm      	iscsi initiator admin |br|              	iscsiadm -m discovery -t st -p 192.168.1.75 |br|
+              						iscsiadm -m node T iqn.2015-02.org.bigbadwolf:system1 -p 192.168.1.75:3260 -l |br|
+
+journalctl    	view system logs on systemd		journalctl -f |br|
+		installation |br|			journalctl -b |br|
+              						journalctl _PID=1 |br|
+              						journalctl --list-boots |br|
+              						journalctl -u sshd.service |br|
+              						journalctl -p err..emerg |br|
+              						journalctl -u sshd.service -o json |br|
+              						journalctl -u sshd.service -o json-pretty |br|
+              						journalctl -u sshd.service -o verbose |br|
+
 sha1sum         calculate hash checksum |br|  
 sha224sum       calculate hash checksum |br|
 sha256sum       calculate hash checksum |br|
@@ -174,43 +204,6 @@ wget            get noninteractive network		wget http://www.google.com |br|
 audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
 
-
-
-head          show the first n lines in a file
-              head -100 /var/log/messages
-
-hostnamectl   set hostname for system
-              hostnamectl set-hostname mycentos.example.com
-
-httpd         apache web server
-              httpd -t
-
-ip            manipulate runtime ip configuration
-              ip addr help
-              ip route help
-              ip link help
-              ip a
-              ip r
-              ip -s link
-              ip addr add 172.16.11.10 dev ens3
-              ip route add 172.16.11.0/24 dev ens3
-              ip route add default via 172.16.11.1 dev ens3
-              ip route add 192.0.2.1/24 via 10.0.0.1 dev eth0
-
-iscsiadm      iscsi initiator admin
-              iscsiadm -m discovery -t st -p 192.168.1.75
-              iscsiadm -m node T iqn.2015-02.se.hellden:system1 -p 192.168.1.75:3260 -l
-
-journalctl    view system logs on systemd installation
-              journalctl -f
-              journalctl -b
-              journalctl _PID=1
-              journalctl --list-boots
-              journalctl -u sshd.service
-              journalctl -p err..emerg
-              journalctl -u sshd.service -o json
-              journalctl -u sshd.service -o json-pretty
-              journalctl -u sshd.service -o verbose
 
 ln            create links
               ln /etc/hosts computers
