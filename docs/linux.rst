@@ -433,7 +433,6 @@ systemctl     	systemd control |br|			systemctl list-unit-files --state=enabled 
               						systemctl set-default graphical.target |br|
               						systemctl isolate multi-user.target |br|
               						systemctl --failed |br|
-=============== ======================================= ===========================================================
 
 tar           	manage tarballs |br|			tar -xvf microcode-20180108.tgz -C /tmp |br|
               						tar -cf etcbackup.tar /etc/* |br|
@@ -546,7 +545,7 @@ yum           	yum manager |br|			yum repolist
               						yum updateinfo list cves
 
 
-yum-config-manager    mange repos			yum-config-manager --add-repo helloworld |br|
+yum-config-manager    mange repos |br|			yum-config-manager --add-repo helloworld |br|
             						yum-config-manager --disable c7-media |br|
 
 zypper      	SUSE package manager |br|		zypper in packagename |br|
@@ -556,3 +555,4 @@ zypper      	SUSE package manager |br|		zypper in packagename |br|
 wget            get noninteractive network |br|		wget http://www.google.com |br| 
 		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
                                     			wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
+=============== ======================================= ===========================================================
