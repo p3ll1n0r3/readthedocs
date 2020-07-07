@@ -48,36 +48,24 @@ grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep 'Hello world' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
  
+sha1sum         calculate hash checksum |br|  
+sha224sum       calculate hash checksum |br|
+sha256sum       calculate hash checksum |br|
+sha384sum       calculate hash checksum |br|
+sha512sum       calculate hash checksum |br|		sha256sum /iso/archlinux.iso |br|
+                					sha256sum *.tar > sha256sum.txt |br|
+                					sha256sum -c sha256sum.txt |br|
+
+ssh             secure shell connection |br|		ssh jsnow@secret.org |br|
+                					ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
+                					ssh -Xa jsnow@secret.org |br|
+                  					ssh -p 2022 secret.org |br|
+                  					ssh -Q {cipher|mac|kex} secret.org |br|
+wget            get noninteractive network		wget http://www.google.com |br| 
+		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
+                                    			wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
 =============== ======================================= ===========================================================
-                  
-
-                                    
-                                    
-                  
  
-
-                  
- 
- sha1sum          calculate hash checksum |br|  
- sha224sum        calculate hash checksum |br|
- sha256sum        calculate hash checksum |br|
- sha384sum        calculate hash checksum |br|
- sha512sum        calculate hash checksum |br|
-                  sha256sum /iso/archlinux.iso |br|
-                  sha256sum *.tar > sha256sum.txt |br|
-                  sha256sum -c sha256sum.txt |br|
- 
- ssh              secure shell connection |br|
-                  ssh jsnow@secret.org |br|
-                  ssh -vvv -i ~/.ssh/id_rsa jsnow@secret.org |br|
-                  ssh -Xa jsnow@secret.org |br|
-                  ssh -p 2022 secret.org |br|
-                  ssh -Q {cipher|mac|kex} secret.org |br|
- 
- wget             get noninteractive network download |br|
-                  wget http://www.google.com |br|
-                  wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
-                  wget --no-check-certificate https://site-without-signed-certificate.com/ |br|
 
 audit2allow   create an SELinux allow rule |br|
               grep 1573441241.893:21782 /var/log/audit/audit.log |audit2why
