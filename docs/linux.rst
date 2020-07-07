@@ -255,47 +255,45 @@ mount         	mount filesystem |br|            	mount -a |br|
               						mount /dev/cdrom /mnt |br|
               						mount -o rw /srv/virtualmachines |br|
 
-nft           	allows configuration of tables, chains	nft add table inet filter  # Add a new table with family "inet" and table "filter" |br| 
-		and rules provided by the Linux kernel	nft add chain inet filter INPUT { type filter hook input priority 0 \\; policy accept \\; } # Add a new chain to accept all inbound traffic |br|
-		firewall. |br|				nft add rule inet filter INPUT tcp dport \{ ssh, http, https\ } accept  # Add a new rule to accept several TCP ports |br|
+nft           	allows configuration of tables, |br|	nft add table inet filter  # Add a new table with family "inet" and table "filter" |br| 
+		chains and rules provided by the |br| 	nft add chain inet filter INPUT { type filter hook input priority 0 \\; policy accept \\; } # Add a new chain to accept all inbound traffic |br|
+		Linux kernel firewall. |br|		nft add rule inet filter INPUT tcp dport \\{ ssh, http, https\\ } accept  # Add a new rule to accept several TCP ports |br|
               						nft add rule inet filter INPUT drop # Rule drop everything else |br|
               						nft list ruleset # View current configuration |br|
               						nft --handlr --numeric list chain # Show rule handles |br|
               						nft delete rult inet filter  input handle 3 # Delete a rule |br|
               						nft list ruleset > /etc/nftables.conf # Save current configuration |br|
+
+nmcli         	network manager CLI |br|		nmcli con show |br|
+              						nmcli dev show |br|
+              						nmcli con up VPN --ask |br|
+              						nmcli con add con-name eth0 ifname eth0 type ethernet ip4 192.168.1.22/24 gw4 192.168.1.1 |br|
+              						nmcli con mod eth0 ipv4.dns 192.168.1.1 |br|
+              						nmcli con up eth0 |br|
+              						nmcli con add type team con-name team0 ifname team0 config '{ "runner": {"name":"activebackup"}}' |br|
+              						nmcli con add type team-slave con-name team0-slave1 ifname eth0 master team0 |br|
+              						nmcli con add type team-slave con-name team0-slave2 ifname eth1 master team0 |br|
+              						nmcli con mod team0 config '{ "runner": {"name":"activebackup"}}' |br|
+              						nmcli con add type team-slave ifname eno1 master team0 |br|
+              						nmcli con add type team-slave ifname eno2 master team0 |br|
+              						nmcli con mod team0 ipv4.addresses 192.168.1.10/24 |br|
+              						nmcli con mod team0 ipv4.gateway 192.168.1.1 |br|
+              						nmcli con mod team0 ipv4.method manual |br|
+              						nmcli con mod team0 ipv4.dns 8.8.8.8 |br|
+              						nmcli con mod team0 +ipv4.dns 8.8.4.4 |br|
+              						nmcli con up team-slave-eno1 |br|
+              						nmcli con up team-slave-eno2 |br|
+              						nmcli con show team0 |br|
+              						nmcli con mod "enp0s3" ipv4.addresses '192.168.1.77/24 192.168.1.1' ipv4.dns 192.168.1.1 ipv4.method manual |br|
+              						nmcli con mod "enp0s3" ipv6.addresses 'FDDB:FE2A:AB1E::C0A8:1/64' ipv6.method manual |br|
+              						nmcli con reload |br|
+              						nmcli dev wifi list |br|
+              						nmcli dev wifi connect SSID password SSID_PASSWORD |br|
+              						nmcli -p -f general,wifi-properties device show wlp3s0 |br|
+              						nmcli general permissions |br|
+              						nmcli general logging |br|
+              						nmcli con delete uuid d49f78de-68d2-412d-80bc-0e238d380b8e |br|
 =============== ======================================= ===========================================================
-
-
-nmcli         network manager CLI
-              nmcli con show
-              nmcli dev show
-              nmcli con up TYR --ask
-              nmcli con add con-name eth0 ifname eth0 type ethernet ip4 192.168.1.22/24 gw4 192.168.1.1
-              nmcli con mod eth0 ipv4.dns 192.168.1.1
-              nmcli con up eth0
-              nmcli con add type team con-name team0 ifname team0 config '{ "runner": {"name":"activebackup"}}'
-              nmcli con add type team-slave con-name team0-slave1 ifname eth0 master team0
-              nmcli con add type team-slave con-name team0-slave2 ifname eth1 master team0
-              nmcli con mod team0 config '{ "runner": {"name":"activebackup"}}'
-              nmcli con add type team-slave ifname eno1 master team0
-              nmcli con add type team-slave ifname eno2 master team0
-              nmcli con mod team0 ipv4.addresses 10.52.220.72/26
-              nmcli con mod team0 ipv4.gateway 10.52.220.65nm
-              nmcli con mod team0 ipv4.method manual
-              nmcli con mod team0 ipv4.dns 10.52.147.36
-              nmcli con mod team0 +ipv4.dns 10.52.147.56
-              nmcli con up team-slave-eno1
-              nmcli con up team-slave-eno2
-              nmcli con show team0
-              nmcli con mod "enp0s3" ipv4.addresses '192.168.1.77/24 192.168.1.1' ipv4.dns 192.168.1.1 ipv4.method manual
-              nmcli con mod "enp0s3" ipv6.addresses 'FDDB:FE2A:AB1E::C0A8:1/64' ipv6.method manual
-              nmcli con reload
-              nmcli dev wifi list
-              nmcli dev wifi connect SSID password SSID_PASSWORD
-              nmcli -p -f general,wifi-properties device show wlp3s0 
-              nmcli general permissions
-              nmcli general logging
-              nmcli con delete uuid d49f78de-68d2-412d-80bc-0e238d380b8e
 
 nmap          network / open ports scanner/mapper
               nmap -sV -p 22 localhost
