@@ -359,7 +359,7 @@ rsync         	sync and copy tool |br|			rsync -aAXvS --info=progress2 --exclude
 sar           	collect, report, or save |br|		sar -A |br|
 		system activity information
 
-scp           	secure copy files |br|			scp e603500@secretbunker.se:~/test.sh .  |br|
+scp           	secure copy files |br|			scp bigbadwolf@secretbunker.se:~/test.sh .  |br|
               						scp -P 2022 secret.txt bigbadwolf@remote-server.com:/~  |br|
 
 sed           	string editor  |br|			sed -Ei.bak '/^\\s*(#|$)/d' /etc/sshd/sshd_config |br|
