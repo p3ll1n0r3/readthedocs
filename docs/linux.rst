@@ -338,6 +338,7 @@ renice        	set new nice value for process |br|     renice -n -10 -p 1519 |br
 repoquery     	query package at repository |br|	repoquery -ql bind-utils |br|
 
 restorecon    	restore SElinux labeling on files |br|	restorecon -R /xfs |br|
+							restorecon -R -v /var/www/mediawiki.secretbunker.org/www/ |br|
 
 rkhunter      	root kit hunter |br|			rkhunter --update |br|
               						rkhunter --propugd |br|
@@ -371,6 +372,7 @@ semanage      	SELinux set labelling on |br|		semanage fcontext -a -t user_home_
               						semanage port -l |br|
               						semanage port -lC |br|
               						semanage permissive -l |br|
+							semanage fcontext -a -t httpd_sys_content_t "/var/www/mediawiki.secretbunker.org/www/(/.*)?" |br|
 
 setfacl       	set file access list |br|		setfacl -R -m u:david:rwx /home/jsnow |br|
               						setfacl -m d:g:sales:rx /account |br|
@@ -378,6 +380,7 @@ setfacl       	set file access list |br|		setfacl -R -m u:david:rwx /home/jsnow 
 
 setsebool	set SELinux boolean value |br|		setsebool -P httpd_use_nfs on |br|
               						setsebool -P named_write_master_zones on |br|
+							setsebool -P httpd_unified 1 |br|
 
 sha1sum |br|	calculate hash checksum |br|  		sha256sum /iso/archlinux.iso |br|
 sha224sum |br|						sha256sum *.tar > sha256sum.txt |br|
