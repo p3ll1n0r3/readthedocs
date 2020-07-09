@@ -74,6 +74,7 @@ dig           	dns lookup |br|				dig +dnssec +multi @8.8.8.8.8 www.google.com |
               						dig -x 2.18.74.134 |br|
               						dig @8.8.8.8 www.dn.se |br|
               						dig www.google.com SOA |br|
+							dig @ns2.mil.se mil.se TXT \| MX \| SPF |br|
 
 dd            	convert and copy a file (usually |br| 	dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
 		write to/from cdrom/iso/usb |br|	dd status=progress if=/dev/vda | ssh 172.16.11.10 dd of=/dev/vda |br|
