@@ -421,6 +421,10 @@ swapoff       	turn off swap on filesystem |br|	swapoff /dev/mapper/rootvg-swap 
 swapon        	turn on swap on filesystem |br|		swapon -a |br|
               						swapon /dev/mapper/rootvg-swap |br|
 
+sysctl		configure kernel parameters |br|	sysctl -w net.ipv4.ip_forward=1 |br|
+		at runtime |br|				sysctl -w net.ipv4.ip_forward=1 >> /etc/sysctl.d/net_ipforward.conf |br|
+							sysctl -p |br|
+		
 systemctl     	systemd control |br|			systemctl list-unit-files --state=enabled |br|
               						systemctl list-timers |br|
               						systemctl -t help |br|
