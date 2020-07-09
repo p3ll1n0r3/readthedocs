@@ -20,6 +20,7 @@ In progress transferring old notes to readthedocs-format.
    pacman
    password
    profile
+   screen
    snmp
    susemanager
    
