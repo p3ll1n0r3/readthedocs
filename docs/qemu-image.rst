@@ -48,5 +48,17 @@ Write Image file to SDCARD block device (assuming the SD card is device /dev/sdc
 .. code-block:: shell 
 
   dd bs=4M if=sdcard.img of=/dev/sdc conv=fsync
-  
-  
+
+QEMU emulation Start Raspberry Pi OS
+
+.. code-block:: shell 
+
+  # pacman -S qemu-extras
+  ### https://www.raspberrypi.org/downloads/raspberry-pi-os/
+  # wget https://downloads.raspberrypi.org/raspios_armhf_latest
+  # unzip *raspios*armhf.zip
+  # wget https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master/kernel-qemu-4.19.50-buster
+  # wget https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master/versatile-pb-buster.dtb
+  # qemu-system-arm -kernel kernel-qemu-4.19.50-buster -cpu arm1176 -m 256 -M versatilepb -serial stdio -append "root=/dev/sda2 rootfstype=ext4 rw" -hda 2020-05-27-raspios-buster-lite-armhf.img -display gtk,show-cursor=on -dtb versatile-pb-buster.dtb
+
+
