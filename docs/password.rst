@@ -14,15 +14,24 @@ suse                 : zypper install keepassxc
 Password Generator
 ''''''''''''''''''
 
-arch                 : pacman -S pwgen
+Password generation tool 'pwgen'
 
+arch linux                 : pacman -S pwgen
 
 Generate 1 secure password with 16 char length and no misinterpreted chracters (i.e. 0,O,1,l,I)  
 
 .. code-block:: shell
 
+  # pacman -S pwgen
   # pwgen -s -B 16 1
   XurfLuHYLKLtY3sALdPe9vh3
+
+Another method is to use /dev/random 
+
+.. code-block:: shell
+
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+
 
 
 Generate a hash password 
