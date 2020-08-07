@@ -30,9 +30,15 @@ Another method is to use /dev/random
 
 .. code-block:: shell
 
-  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+  # cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
 
+Method with seperated password in chunks, divided by hyphen
 
+.. code-block:: shell
+
+  # openssl rand -base64 500 | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1 | gawk '{$1=$1}1' FPAT='.{6}' OFS=-
+  licM9z-YJ6eHW-H8nAZi-dQPeEJ
+  
 
 Generate a hash password 
 ''''''''''''''''''''''''
