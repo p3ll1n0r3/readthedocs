@@ -21,6 +21,7 @@ In progress transferring old notes to readthedocs-format.
    pacman
    password
    profile
+   python
    screen
    snmp
    susemanager
