@@ -558,6 +558,8 @@ yum-config-ma..	mange repos |br|			yum-config-manager --add-repo helloworld |br|
 zypper      	SUSE package manager |br|		zypper in packagename |br|
             						zypper refresh |br|
             						zypper lu |br|
+							zypper --releasever=15.2 ref |br|
+							zypper --releasever=15.2 dup |br|
 
 wget            get noninteractive network |br|		wget http://www.google.com |br| 
 		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
