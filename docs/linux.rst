@@ -560,7 +560,8 @@ zypper      	SUSE package manager |br|		zypper in packagename |br|
             						zypper lu |br|
 							zypper --releasever=15.2 ref |br|
 							zypper --releasever=15.2 dup |br|
-                                                        zypper wp /etc/passwd
+                                                        zypper wp /etc/passwd |br|
+							zypper repos -d |br|
 
 wget            get noninteractive network |br|		wget http://www.google.com |br| 
 		download |br|				wget -O save-as-helloworld.txt http://wwww.getfile.com/index.html |br|
