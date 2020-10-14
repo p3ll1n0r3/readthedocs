@@ -199,6 +199,7 @@ ls            	list files/directories |br|		ls -latr |br|
               						ls -d [!a-f]* |br|
               						ls -il * |br|
 							ls -la {*.conf,*rc} |br|
+							ls -la *+(.conf|rc) |br|
 
 lsblk         	list block devices |br|
 
