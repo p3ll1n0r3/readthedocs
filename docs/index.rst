@@ -22,6 +22,7 @@ In progress transferring old notes to readthedocs-format.
    password
    profile
    python
+   resources
    screen
    snmp
    susemanager
