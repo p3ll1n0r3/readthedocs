@@ -60,6 +60,7 @@ resume a screen session
 .. code-block:: shell
 
   $ screen -r a_long_process
+  $ screen -r 2892
   
 
 lock/password protect a screen session
