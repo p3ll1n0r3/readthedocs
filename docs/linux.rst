@@ -306,8 +306,8 @@ nmtui         	network manager text menu |br|
 osinfo-query  	qemu-kvm tool identify |br|		osinfo-query os |br|
 		correct identifier |br|
 
-openssl       	create / manipulate and get |br|	openssl s_client -connect www.google.com:443 -showcerts < /dev/null 2> /dev/null \|openssl x509 -outform PEM
-		certificates |br|
+openssl       	create / manipulate and get |br|	openssl s_client -connect www.google.com:443 -showcerts < /dev/null 2> /dev/null \|openssl x509 -outform PEM |br|
+		certificates |br|			openssl req -subj "/commonName=www.hellden.se/" -x509 -days 3650 -newkey rsa:4096 -keyout /etc/ssl/private/nginx-www.hellden.se.key - out /etc/ssl/certs/nginx-www.hellden.se.crt |br|			
               
 passwd        	set password for user |br|		passwd jsnow |br|
 							passwd -e 90 jsnow |br|
