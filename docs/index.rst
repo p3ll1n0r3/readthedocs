@@ -20,6 +20,7 @@ In progress transferring old notes to readthedocs-format.
    openssl
    pacman
    password
+   postgres
    profile
    python
    resources
