@@ -515,6 +515,8 @@ virsh         	qemu/kvm management |br|		virsh list --all |br|
 virt-install  	create/install new qemu guest |br|	virt-install -n test -r 1024 --vcpus=1 --os-variant=centos7.5 --accelerate --nographics -v  --disk path=/var/lib/libvirt/shared-storage/test.img,size=20 --extra-args "console=ttyS0" --location /iso/CentOS-7.5-x86_64-netinstall.iso |br|
               						virt-install -n test -r 1024 --vcpus=1 --accelerate --nographics -v --disk path=/var/lib/libvirt/images/test.img,size=20 --console pty,target_type=serial --cdrom /iso/archlinux-2018.06.01-x86_64.iso |br|
 
+watch		execute a executio update		watch ps -p 1104 |br|
+
 wc            	count lines, words or bytes |br|	cat filename \| wc - l |br|
               						wc -c filename |br|
               						wc -b filename  |br|
