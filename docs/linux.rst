@@ -44,6 +44,8 @@ chmod           change file permissions |br|		chmod +x file.sh |br|
 chown           change file owner |br|			chown root:root file.sh |br|
                  					chown -R root:root /root/secret |br|
 
+chsh		change shell |br|			chsh --shell /bin/fish bwolf |br|
+
 chvt          	change virtual console |br|		chvt 2 |br|
 
 crontab       	edit / view crontabs |br|		crontab -e |br|
@@ -493,7 +495,8 @@ useradd       	add linux user |br|			useradd -c "BigBadWolf/NSA" -m bwolf |br|
               						useradd -u 2000 bwolf |br|
 
 usermod       	modify user parameters |br|		usermod -aG sudousers bwolf |br|
-              						usermod -e 2018-09-02 bwolf
+              						usermod -e 2018-09-02 bwolf |br|
+							usermod --shell /bin/fish bwolf |br|
 
 vgcreate      	create volume group |br|          	vgcreate rootvg /dev/sda1  |br|
               						vgcreate -s 16M vg_16M_extends /dev/sda2  |br|
