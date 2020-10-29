@@ -97,8 +97,10 @@ fallocate     	preallocate a file |br|			fallocate-l 20MB helloworld |br|
 file          	identify fileformat |br|
 
 find          	find files |br|				find / -name *.log |br|
-              						find / -user jsnow -exec cp -rfp {} /root/filesfound/ \\;
-
+              						find / -user jsnow -exec cp -rfp {} /root/filesfound/ \\; |br|
+							for x in $(find /etc/zypp/repos.d/ -maxdepth 1 -name \*.repo);do mv $x $(echo $x|sed 's/SP2/SP3/g') ;done |br|
+							for x in $(find /etc/zypp/repos.d/ -maxdepth 1 -name \*.repo);do sed -i 's/\/REPTIL\//\/REPTIL2\//g' ;done
+ |br|
 firewall-cmd  	firewalld managemant rules/zones |br|	firewall-cmd --list-all |br|
               						firewall-cmd --reload |br|
               						firewall-cmd --permanent --add-masquerade |br|
