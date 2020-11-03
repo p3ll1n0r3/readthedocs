@@ -41,6 +41,10 @@ chmod           change file permissions |br|		chmod +x file.sh |br|
                   					chmod 3770 /sales			# all group members can add/delete from folder, only owner can delete its own files  |br|
                   					chmod ug+rwxs /sales |br|
 
+docker		manage docker containers		docker ps |br|
+							docker images |br|
+							docker build --tag reverseproxy:1.0 . |br|
+
 chown           change file owner |br|			chown root:root file.sh |br|
                  					chown -R root:root /root/secret |br|
 
