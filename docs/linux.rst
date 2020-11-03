@@ -85,6 +85,8 @@ df            	display filesystems |br|		df -h |br|
 
 dmsetup       	Manage dm disks |br|			dmsetup info /dev/dm-5 |br|
 
+docker-compose	Manager docker projects |br|		docker-compose -f docker-compose-postgres.yml up -d
+
 drill         	nslookup dnssec |br|           		drill -DT www.google.com |br|
 
 du            	files/directories size calculation |br|	du -sh * |br|
