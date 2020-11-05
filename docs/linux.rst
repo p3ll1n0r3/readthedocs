@@ -89,6 +89,10 @@ df            	display filesystems |br|		df -h |br|
 
 dmsetup       	Manage dm disks |br|			dmsetup info /dev/dm-5 |br|
 
+dnf		next version of yum packet manager	dnf module list postgresql |br|
+							dnf module enable postgresql:12 |br|
+							dnf -y install postgresql-server |br|
+
 docker-compose	Manager docker projects |br|		docker-compose -f docker-compose-postgres.yml up -d
 
 drill         	nslookup dnssec |br|           		drill -DT www.google.com |br|
