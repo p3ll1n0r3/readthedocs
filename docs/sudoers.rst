@@ -73,3 +73,5 @@ MYPERSONAL
 
   # wheel group can run all commands as run, but not from insecure directories
   %wheel	ALL=(root)  	PASSWD:	ALL, !USER_WRITEABLE
+
+  #includedir /etc/sudoers.d
