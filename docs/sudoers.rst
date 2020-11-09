@@ -75,3 +75,30 @@ MYPERSONAL
   %wheel	ALL=(root)  	PASSWD:	ALL, !USER_WRITEABLE
 
   #includedir /etc/sudoers.d
+
+
+We can restrict access to su so group "wheel" can only access.
+Modify file permission of the SGID file to prevent "others/worldwide" execute /bin/su
+Modify/Add file extended file ownership to the group "wheel"
+
+
+.. code-block:: shell
+  
+  # sudo chmod 4750 /bin/su
+  # sudo setfacl -m g:wheel:rx /bin/su
+
+  # getfacl: Removing leading '/' from absolute path names
+  # file: bin/su
+  # owner: root
+  # group: root
+  # flags: s--
+  user::rwx
+  group::r-x
+  group:wheel:r-x
+  mask::r-x
+  other::---
+
+  [kalle@xwiki ~]$ /bin/su
+  -bash: /bin/su: Permission denied
+
+  
