@@ -26,6 +26,7 @@ In progress transferring old notes to readthedocs-format.
    resources
    screen
    snmp
+   sudoers
    susemanager
    
    linux
