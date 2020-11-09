@@ -77,8 +77,10 @@ MYPERSONAL
   #includedir /etc/sudoers.d
 
 
-We can restrict access to su so group "wheel" can only access.
-Modify file permission of the SGID file to prevent "others/worldwide" execute /bin/su
+We can restrict access to "/bin/su" so only group "wheel" can only execute "su" command.
+
+Modify file permission of the SGID file to prevent "others/worldwide" execute "/bin/su"
+
 Modify/Add file extended file ownership to the group "wheel"
 
 
@@ -102,3 +104,25 @@ Modify/Add file extended file ownership to the group "wheel"
   -bash: /bin/su: Permission denied
 
   
+We can restrict access to "/bin/sudo" so only group "wheel" can execute "sudo" command.
+
+We can restrict any "sudo" execution for normal users as well in similar manner, e.g. block "sudo -l".
+
+.. code-block:: shell
+
+  # sudo chmod 4750 /bin/sudo
+  # sudo setfacl -m g:wheel:rx /bin/sudo
+
+  # getfacl: Removing leading '/' from absolute path names
+  # file: bin/sudo
+  # owner: root
+  # group: root
+  # flags: s--
+  user::rwx
+  group::r-x
+  group:wheel:r-x
+  mask::r-x
+  other::---
+
+  [kalle@xwiki ~]$ /bin/sudo
+  -bash: /bin/sudo: Permission denied
