@@ -130,6 +130,8 @@ fc-list       	list available fonts |br|
 
 fc-match      	match available fonts |br|		fc-match monospace |br|
 
+for 		loop in bash				for a in 's-master' 's-worker-1' 's-worker-2' 's-nfs' 's-pg'; do ssh -i .ssh/okd_rsa root@$a 'systemctl stop firewalld';done |br|
+
 free          	available memory |br|			free -m |br|
               						free -h |br|
 
