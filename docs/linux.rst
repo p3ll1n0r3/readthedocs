@@ -104,6 +104,8 @@ egrep         	grep with regexp |br|              	egrep -v "^$\|^#" /etc/ssh/ss
 
 fallocate     	preallocate a file |br|			fallocate-l 20MB helloworld |br|
 
+ffmpeg		convert videos				ffmpeg -i installation.mkv -vcodec mpeg2video  -qscale 0 -acodec copy -f vob -copyts -y installation.mpg |br|
+
 file          	identify fileformat |br|
 
 find          	find files |br|				find / -name *.log |br|
