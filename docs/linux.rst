@@ -21,8 +21,7 @@ base64          base64 encode/decode |br|		echo "Hello World" \| base64 |br|
 blkid           locate/print block device attributes
  		(requires sudo) |br|
 
-bzip 		bzip compression utility |br|
-bunzip
+bzip2, bunzip2	bzip2 compression utility |br|
 
 cat             print content of file |br|		cat /etc/passwd |br|
 							
@@ -545,6 +544,7 @@ virt-install  	create/install new qemu guest |br|	virt-install -n test -r 1024 -
               						virt-install -n test -r 1024 --vcpus=1 --accelerate --nographics -v --disk path=/var/lib/libvirt/images/test.img,size=20 --console pty,target_type=serial --cdrom /iso/archlinux-2018.06.01-x86_64.iso |br|
 
 watch		execute a executio update		watch ps -p 1104 |br|
+							watch lsof -p 1104 |br|
 
 wc            	count lines, words or bytes |br|	cat filename \| wc - l |br|
               						wc -c filename |br|
