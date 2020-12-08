@@ -21,6 +21,9 @@ base64          base64 encode/decode |br|		echo "Hello World" \| base64 |br|
 blkid           locate/print block device attributes
  		(requires sudo) |br|
 
+bzip |br|	bzip compression utility |br|
+bunzip
+
 cat             print content of file |br|		cat /etc/passwd |br|
 							
 chage           change/view aging rules for		chage -l jsnow |br| 
@@ -111,8 +114,8 @@ file          	identify fileformat |br|
 find          	find files |br|				find / -name *.log |br|
               						find / -user jsnow -exec cp -rfp {} /root/filesfound/ \\; |br|
 							for x in $(find /etc/zypp/repos.d/ -maxdepth 1 -name \*.repo);do mv $x $(echo $x|sed 's/SP2/SP3/g') ;done |br|
-							for x in $(find /etc/zypp/repos.d/ -maxdepth 1 -name \*.repo);do sed -i 's/\/REPTIL\//\/REPTIL2\//g' ;done
- |br|
+							for x in $(find /etc/zypp/repos.d/ -maxdepth 1 -name \*.repo);do sed -i 's/\/REPTIL\//\/REPTIL2\//g' ;done |br|
+
 firewall-cmd  	firewalld managemant rules/zones |br|	firewall-cmd --list-all |br|
               						firewall-cmd --reload |br|
               						firewall-cmd --permanent --add-masquerade |br|
@@ -170,6 +173,9 @@ grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
               						grep -v ^$ /etc/ssh/sshd_config |br|
                   					grep -v ^root /etc/passwd |br|
 grubby        	update boot parameters kernels |br|	grubby –update-kernel=ALL –args=”console=ttyS0″ |br|
+
+gzip |br|	gzip compression utility |br|
+gunzip 
 
 head          	show the first n lines in a file |br|	head -100 /var/log/messages |br|
 
@@ -467,6 +473,10 @@ tar           	manage tarballs |br|			tar -xvf microcode-20180108.tgz -C /tmp |b
               						tar -cvzf /tmp/tar.tgz /usr/local |br|
               						tar -tvf etc.tgz  |br|
               						tar -xvf etc.tgz -C / etc/hosts |br|
+							tar -cvf my0.tar -g my.snar |br|
+							tar -cvf my1.tar -g my,snar |br|
+							tar -xvf my0.tar -g /dev/null |br|
+							tar -xvf my1.tar -g /dev/null |br|
 
 targetcli     	manage and setup iscsi targets |br|	targetcli /backstores/block create block1 /dev/iscsi_storage/iscsi_storage_lv |br|
               						targetcli /iscsi create iqn.2015-02.org.secretbunker:system1 |br|
