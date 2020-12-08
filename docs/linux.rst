@@ -21,7 +21,7 @@ base64          base64 encode/decode |br|		echo "Hello World" \| base64 |br|
 blkid           locate/print block device attributes
  		(requires sudo) |br|
 
-bzip |br|	bzip compression utility |br|
+bzip 		bzip compression utility |br|
 bunzip
 
 cat             print content of file |br|		cat /etc/passwd |br|
