@@ -43,6 +43,8 @@ chmod           change file permissions |br|		chmod +x file.sh |br|
                   					chmod 3770 /sales			# all group members can add/delete from folder, only owner can delete its own files  |br|
                   					chmod ug+rwxs /sales |br|
 
+cpio		cpio archive |br|			cpio -i < initramfs-linux.img |br|
+
 docker		manage docker containers		docker ps |br|
 							docker images |br|
 							docker build --tag reverseproxy:1.0 . |br|
@@ -84,8 +86,9 @@ dig           	dns lookup |br|				dig +dnssec +multi @8.8.8.8.8 www.google.com |
               						dig www.google.com SOA |br|
 							dig @ns2.mil.se mil.se TXT \| MX \| SPF |br|
 
-dd            	convert and copy a file (usually |br| 	dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
+dd            	disk duplicator |br| 			dd if=pfSense-CE-memstick-2.3.5-RELEASE-amd64.img of=/dev/sdb bs=1M |br|
 		write to/from cdrom/iso/usb |br|	dd status=progress if=/dev/vda | ssh 172.16.11.10 dd of=/dev/vda |br|
+							dd if=/dev/cdrom of=/home/jsnow/myiso
 
 df            	display filesystems |br|		df -h |br|
 
@@ -173,8 +176,7 @@ grep            find string in file(s) |br|		grep -i 'DaRliNg' document.txt |br|
                   					grep -v ^root /etc/passwd |br|
 grubby        	update boot parameters kernels |br|	grubby –update-kernel=ALL –args=”console=ttyS0″ |br|
 
-gzip |br|	gzip compression utility |br|
-gunzip 
+gzip, gunzip	gzip compression utility |br|
 
 head          	show the first n lines in a file |br|	head -100 /var/log/messages |br|
 
