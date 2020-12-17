@@ -29,6 +29,7 @@ Minimal (without GUI)
 /boot       xfs                             1 GB
 
 rootvg:
+-------------------------------------------------------------------------
 lv_home     /home           xfs             4 GB
 lv_tmp      /tmp            xfs             2 GB      noexec,nodev,nosuid
 lv_var      /var            xfs             4 GB
