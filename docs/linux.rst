@@ -369,7 +369,9 @@ pwdx		print pwd a process |br|
 
 python        	python programming language |br|	python -m venv django-project |br|
               						python -c 'import time;print(time.ctime(1565920843.452))' |br|
-			
+							
+qemu-img	disk/image manipulation	|br|		qemu-img convert -f raw -O qcow2 /var/lib/libvirt/images/machine01.img /var/lib/libvirt/images/machine01.qcow2 |br|
+
 renice        	set new nice value for process |br|     renice -n -10 -p 1519 |br|
               						renice +10 1519  |br|
 
