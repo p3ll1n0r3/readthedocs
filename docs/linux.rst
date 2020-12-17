@@ -184,8 +184,10 @@ hostnamectl   	set hostname for system |br|		hostnamectl set-hostname mycentos.e
 
 httpd         	apache web server |br|			httpd -t |br|
 
-ip            	manipulate runtime ip			ip addr help |br|
-		configuration |br|			ip route help |br|
+iostat		monitoring system io device |br|
+
+ip            	ip manipulate |br|			ip addr help |br|
+							ip route help |br|
               						ip link help |br|
               						ip a |br|
               						ip r |br|
@@ -198,8 +200,8 @@ ip            	manipulate runtime ip			ip addr help |br|
 iscsiadm      	iscsi initiator admin |br|              iscsiadm -m discovery -t st -p 192.168.1.75 |br|
               						iscsiadm -m node T iqn.2015-02.org.bigbadwolf:system1 -p 192.168.1.75:3260 -l |br|
 
-journalctl    	view system logs on systemd		journalctl -f |br|
-		installation |br|			journalctl -b |br|
+journalctl    	view systemd logs |br|			journalctl -f |br|
+							journalctl -b |br|
               						journalctl _PID=1 |br|
               						journalctl --list-boots |br|
               						journalctl -u sshd.service |br|
@@ -236,8 +238,7 @@ lslocks       	list system locks |br|
 
 lsmem         	list memory |br|
 
-lsmod         	list status current loaded 
-		modules |br|
+lsmod         	list loaded modules |br|
 
 lsof          	list open files |br|			lsof -p 616 |br|
               						lsof /dev/sda2 |br|
@@ -283,6 +284,8 @@ mount         	mount filesystem |br|            	mount -a |br|
               						mount /www |br|
               						mount /dev/cdrom /mnt |br|
               						mount -o rw /srv/virtualmachines |br|
+
+mpstat		Report processors related statistics
 
 nft           	allows configuration of tables, |br|	nft add table inet filter  # Add a new table with family "inet" and table "filter" |br| 
 		chains and rules provided by the |br| 	nft add chain inet filter INPUT { type filter hook input priority 0 \\; policy accept \\; } # Add a new chain to accept all inbound traffic |br|
@@ -338,6 +341,8 @@ passwd        	set password for user |br|		passwd jsnow |br|
 							passwd -e 90 jsnow |br|
               						passwd -u |br|
               						passwd -L ?  |br|
+							
+pidstat		Report statistics for Linux tasks
 
 pip           	python module installer |br|		pip install -r requirements.txt |br|
               						pip install {package-name} |br|
