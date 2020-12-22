@@ -73,12 +73,19 @@ Cron job rotate daily gzip logfiles and rename logfiles based on timestamp.
 Keeps 14 days of auditd log files
 Expected size with compression = 100 MB of 1:9 compression ratio
 Forwarding auditd logs to syslog :
-  Install on CentOS  : yum install audispd-plugins
-  Enable in /etc/audit/plugins.d/syslog # set active=yes
+  Install on CentOS  : yum install audispd-plugins , SLES : zypper install audisp-plugins
+  Enable in /etc/audit/plugins.d/syslog # set active=yes    # CENTOS = /etc/audit/plugins.d/syslog , SLES = /etc/audisp/plugins.d/syslog.conf
   Reconfigure auditd : service auditd reload
   Send testmessage : auditctl -m "Hello World"
   Message should get to : /var/log/messages
 TODO : Auditing Rules .... 
+
+
+sed -i 's/^admin_space_left_action.*/admin_space_left_action = SYSLOG/g' /etc/audit/auditd.conf
+sed -i 's/^disk_full_action.*/disk_full_action = SYSLOG/g' /etc/audit/auditd.conf
+sed -i 's/^disk_error_action.*/disk_error_action = SYSLOG/g' /etc/audit/auditd.conf
+sed -i 's/^num_logs.*/num_logs = 16/g' /etc/audit/auditd.conf
+sed -i 's/^max_log_file .*/max_log_file = 50/g' /etc/audit/auditd.conf
 
 
 /etc/audit/auditd.conf
@@ -86,7 +93,6 @@ TODO : Auditing Rules ....
 #
 # This file controls the configuration of the audit daemon (v3.0)
 #
-
 local_events = yes
 write_logs = yes
 log_file = /var/log/audit/audit.log
@@ -129,7 +135,7 @@ max_restarts = 10
 plugin_dir = /etc/audit/plugins.d
 
 
-/etc/cron.daily/auditd
+/etc/cron.daily/auditd          # SLES does not support "rotate" as a command to auditd
 --------------------------
 #!/bin/bash
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin
@@ -153,24 +159,30 @@ rename_and_compress_old_logs() {
 
 delete_old_compressed_logs() {
     # Optional: remove "-v" verbose flag to hide output
-    rm -v $(find /var/log/audit/ -regextype posix-extended -regex '.*audit\.log\..*(xz|gz|bz2)$' | sort -n | head -n -${KEEP})
+    rm -rfv $(find /var/log/audit/ -regextype posix-extended -regex '.*audit\.log\..*(xz|gz|bz2)$' | sort -n | head -n -${KEEP})
 }
 
 rename_and_compress_old_logs
-service auditd rotate
+
+# service auditd rotate         # Centos/RHEL 8
+kill -USR1 $(pidof auditd)      # SLES 15.2
+
 sleep $ROTATE_TIME
 rename_and_compress_old_logs
 delete_old_compressed_logs
 
 
-
-
-
 9) System Activity Reporting
+
+TODO !
 
 10) standard packages installation / removal
 
+TODO !
+
 11) Log rotation rules
+
+TODO on SLES 15...
 
 /etc/logrotate.d/syslog
 ---------------------------------
@@ -190,7 +202,6 @@ delete_old_compressed_logs
         /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
     endscript
 }
-
 
 
 /etc/logrotate.conf
@@ -216,10 +227,51 @@ include /etc/logrotate.d
 
 # system-specific logs may be also be configured here.
 
-
 12) Crony / Time syncing
 
+TODO
+
 13) Persistent Journald logs
+
+mkdir /var/log/journal
+systemd-tmpfiles --create --prefix /var/log/journal
+systemctl restart systemd-journald
+sed -i 's/.*Storage=.*/Storage=persistent/' /etc/systemd/journald.conf
+sed -i 's/.*Compress=.*/Compress=yes/' /etc/systemd/journald.conf
+sed -i 's/.*SystemMaxUse=.*/SystemMaxUse=2G/' /etc/systemd/journald.conf
+
+
+/etc/systemd/journald.conf
+----------------------------
+[Journal]
+Storage=auto
+Compress=yes
+#Seal=yes
+#SplitMode=uid
+#SyncIntervalSec=5m
+#RateLimitIntervalSec=30s
+#RateLimitBurst=1000
+SystemMaxUse=2G
+#SystemKeepFree=
+#SystemMaxFileSize=
+#SystemMaxFiles=100
+#RuntimeMaxUse=
+#RuntimeKeepFree=
+#RuntimeMaxFileSize=
+#RuntimeMaxFiles=100
+#MaxRetentionSec=
+#MaxFileSec=1month
+#ForwardToSyslog=yes
+#ForwardToKMsg=no
+#ForwardToConsole=no
+#ForwardToWall=yes
+#TTYPath=/dev/console
+#MaxLevelStore=debug
+#MaxLevelSyslog=debug
+#MaxLevelKMsg=notice
+#MaxLevelConsole=info
+#MaxLevelWall=emerg
+
 
 14) Collect daily System status and Information
 
