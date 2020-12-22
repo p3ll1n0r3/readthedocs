@@ -62,18 +62,15 @@ done
 sed -i 's/^\(\*.info;mail.none;authpriv.none;cron.none.*\/var\/log\/messages\)/\n\# Commented as part of customization, see \/etc\/rsyslog.d\/99-customized.conf\n\#\1/g' /etc/rsyslog.conf
 
 
-
 7) Monitoring
 
 8) Auditing 
-
-9) Crony / Time syncing
-
-
 
 9) System Activity Reporting
 
 10) standard packages installation / removal
 
 11) Log rotation rules
+
+12) Crony / Time syncing
 
