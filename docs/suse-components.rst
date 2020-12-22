@@ -221,3 +221,9 @@ include /etc/logrotate.d
 
 13) Persistent Journald logs
 
+14) Collect daily System status and Information
+
+Example to use : cfg2html, LinEnum
+PreReq cfg2html : lsof psmisc bind-utils
+TODO : test, crontab, archive, logrotate
+
