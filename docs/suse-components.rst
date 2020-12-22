@@ -11,6 +11,8 @@
 
 6) Rsyslog conf + Logging (remote)
 
+/etc/rsyslog.conf
+---------------------------------
 $template CustomizedTemplate,"%TIMESTAMP% <%syslogfacility-text%.%syslogseverity-text%> %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n" 
 $FileCreateMode 0640
 
@@ -64,7 +66,105 @@ sed -i 's/^\(\*.info;mail.none;authpriv.none;cron.none.*\/var\/log\/messages\)/\
 
 7) Monitoring
 
-8) Auditing 
+8) Auditing
+
+Below restricts auditd to overflow filesystem with 16 logs * 50 MB = 900 MB on a 1 GB filesystem
+Cron job rotate daily gzip logfiles and rename logfiles based on timestamp.
+Keeps 14 days of auditd log files
+Expected size with compression = 100 MB of 1:9 compression ratio
+Forwarding auditd logs to syslog :
+  Install on CentOS  : yum install audispd-plugins
+  Enable in /etc/audit/plugins.d/syslog # set active=yes
+  Reconfigure auditd : service auditd reload
+  Send testmessage : auditctl -m "Hello World"
+  Message should get to : /var/log/messages
+TODO : Auditing Rules .... 
+
+
+/etc/audit/auditd.conf
+--------------------------
+#
+# This file controls the configuration of the audit daemon
+#
+
+local_events = yes
+write_logs = yes
+log_file = /var/log/audit/audit.log
+log_group = root
+log_format = ENRICHED
+flush = INCREMENTAL_ASYNC
+freq = 50
+#max_log_file = 8
+max_log_file = 50
+num_logs = 16 
+priority_boost = 4
+name_format = NONE
+##name = mydomain
+#max_log_file_action = ROTATE
+max_log_file_action = ROTATE
+space_left = 75
+space_left_action = SYSLOG
+verify_email = yes
+action_mail_acct = root
+admin_space_left = 50
+#admin_space_left_action = SUSPEND
+admin_space_left_action = SYSLOG
+#disk_full_action = SUSPEND
+disk_full_action = SYSLOG
+#disk_error_action = SUSPEND
+disk_error_action = SYSLOG
+use_libwrap = yes
+##tcp_listen_port = 60
+tcp_listen_queue = 5
+tcp_max_per_addr = 1
+##tcp_client_ports = 1024-65535
+tcp_client_max_idle = 0
+transport = TCP
+krb5_principal = auditd
+##krb5_key_file = /etc/audit/audit.key
+distribute_network = no
+q_depth = 400
+overflow_action = SYSLOG
+max_restarts = 10
+plugin_dir = /etc/audit/plugins.d
+
+
+/etc/cron.daily/auditd
+--------------------------
+#!/bin/bash
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+FORMAT="%Y%m%d%T" # Customize timestamp format as desired, per `man date`
+                  # %Y%m%d will lead to standard logrotationformat: audit.log.2020222.gz
+                  # %F_%T will lead to files like: audit.log.2015-02-26_15:43:46
+COMPRESS=gzip     # Change to bzip2 or xz as desired
+KEEP=14           # Number of compressed log files to keep
+ROTATE_TIME=5     # Amount of time in seconds to wait for auditd to rotate its logs. Adjust this as necessary
+
+rename_and_compress_old_logs() {
+    for file in $(find /var/log/audit/ -name 'audit.log.[0-9]'); do
+        timestamp=$(ls -l --time-style="+${FORMAT}" ${file} | awk '{print $6}')
+        newfile=${file%.[0-9]}.${timestamp}
+        # Optional: remove "-v" verbose flag from next 2 lines to hide output
+        mv -v ${file} ${newfile}
+        ${COMPRESS} -v ${newfile}
+    done
+}
+
+delete_old_compressed_logs() {
+    # Optional: remove "-v" verbose flag to hide output
+    rm -v $(find /var/log/audit/ -regextype posix-extended -regex '.*audit\.log\..*(xz|gz|bz2)$' | sort -n | head -n -${KEEP})
+}
+
+rename_and_compress_old_logs
+service auditd rotate
+sleep $ROTATE_TIME
+rename_and_compress_old_logs
+delete_old_compressed_logs
+
+
+
+
 
 9) System Activity Reporting
 
@@ -72,5 +172,52 @@ sed -i 's/^\(\*.info;mail.none;authpriv.none;cron.none.*\/var\/log\/messages\)/\
 
 11) Log rotation rules
 
+/etc/logrotate.d/syslog
+---------------------------------
+/var/log/other.log
+/var/log/syslog
+/var/log/daemon.log
+/var/log/kern.log
+/var/log/cron
+/var/log/maillog
+/var/log/messages
+/var/log/secure
+/var/log/spooler
+{
+    missingok
+    sharedscripts
+    postrotate
+        /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
+    endscript
+}
+
+
+
+/etc/logrotate.conf
+---------------------------------
+# see "man logrotate" for details
+# rotate log files daily 
+daily
+
+# keep 14 days worth of backlogs
+rotate 14
+
+# create new (empty) log files after rotating old ones
+create
+
+# use yesterday date as a suffix of the rotated file
+dateyesterday
+
+# uncomment this if you want your log files compressed
+compress
+
+# RPM packages drop log rotation information into this directory
+include /etc/logrotate.d
+
+# system-specific logs may be also be configured here.
+
+
 12) Crony / Time syncing
+
+13) Persistent Journald logs
 
