@@ -84,7 +84,7 @@ TODO : Auditing Rules ....
 /etc/audit/auditd.conf
 --------------------------
 #
-# This file controls the configuration of the audit daemon
+# This file controls the configuration of the audit daemon (v3.0)
 #
 
 local_events = yes
