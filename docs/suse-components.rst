@@ -1,13 +1,23 @@
 
 1) Disk partitioning
 
+TODO!
+
 2) Filesystem flags
+
+TODO!
 
 3) Backup client (include/exclude)
 
+TODO!
+
 4) sudoers
 
+TODO!
+
 5) sshd config
+
+TODO! 
 
 6) Rsyslog conf + Logging (remote)
 
@@ -65,6 +75,8 @@ sed -i 's/^\(\*.info;mail.none;authpriv.none;cron.none.*\/var\/log\/messages\)/\
 
 
 7) Monitoring
+
+TODO !
 
 8) Auditing
 
@@ -278,4 +290,9 @@ SystemMaxUse=2G
 Example to use : cfg2html, LinEnum
 PreReq cfg2html : lsof psmisc bind-utils
 TODO : test, crontab, archive, logrotate
+
+
+15) File Permission from CIS
+
+TODO !
 
