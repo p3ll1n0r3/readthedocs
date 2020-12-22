@@ -67,6 +67,10 @@ sed -i 's/^\(\*.info;mail.none;authpriv.none;cron.none.*\/var\/log\/messages\)/\
 
 8) Auditing 
 
+9) Crony / Time syncing
+
+
+
 9) System Activity Reporting
 
 10) standard packages installation / removal
