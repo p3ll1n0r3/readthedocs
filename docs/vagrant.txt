@@ -1,0 +1,74 @@
+
+Arch Linux
+-----------------------
+Prereq: 
+
+## install vagrant tool and ansible provision tool
+# pacman -S ansible vagrant
+
+## Vagrant support for KVM/QEMU/LibVirt images
+# vagrant plugin install vagrant-libvirt
+
+1) Create a base directory for vagrant projects
+
+# cd
+# mkdir vagrant
+
+2) Create  a project directory and initialize a vm
+
+# vagrant init generic/ubuntu2010
+# vim Vagrantfile
+------------------------------------------------------------
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2010"
+  config.vm.hostname = "MerryChristmas"
+  config.vm.provision "ansible", playbook: "ubuntu.yml"
+  config.vm.network "private_network", ip: "192.168.122.53"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+end
+
+# vim ubuntu.yml
+------------------------------------------------------------
+---
+- name: Getting Started With Vagrant and Ansible
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: create user
+      user:
+        name: tux
+        state: present
+        shell: /bin/bash
+        password: "{{ 'password' | password_hash('sha512')}}"
+        update_password: on_create
+    - name: sshd password
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication '
+        insertafter: '#PasswordAuthentication '
+        line: 'PasswordAuthentication yes'
+      notify: restart_ssh
+    - name: sudoers
+      copy:
+        dest: /etc/sudoers.d/tux
+        content: "tux ALL=(root) ALL"
+
+  handlers:
+    - name: restart_sshd
+      service:
+        name: sshd
+        state: restarted
+
+
+3) Manage Vagrant VMs
+
+# vagrant up
+
+# vagrant halt
+
+# vagrant destroy
+
+# vagrant provision
