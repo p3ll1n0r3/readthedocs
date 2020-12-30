@@ -430,6 +430,13 @@ sha512sum |br|
 
 smbpasswd	set samba user password	 |br|		smbpasswd -a robby |br|
 
+snapper		manage btrfs snapshosts |br|		snapper list |br|
+							snapper status 108..109 |br|
+							snapper list -t pre-post |br|
+							snapper -v undochange 108..109 |br|
+							snapper diff 108..109 /etc/passwd |br|
+							snapper --config root delete 1-144 |br|
+
 socat         	multipurpose relay |br|			socat tcp-connect:192.168.1.100:2604 file:`tty`,raw,echo=0 |br|
 
 sort          	sort input |br|				sort -n |br|
