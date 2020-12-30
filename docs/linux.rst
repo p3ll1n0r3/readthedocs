@@ -430,7 +430,10 @@ sha512sum |br|
 
 smbpasswd	set samba user password	 |br|		smbpasswd -a robby |br|
 
-snapper		manage btrfs snapshosts |br|		snapper list |br|
+snapper		manage btrfs snapshosts |br|		snapper -c root create-config /
+							snapper list |br|
+							snapper create --type pre --print-number --description "Before LAMP install" |br|
+							snapper create --type post --pre-number 108 --description "After the Apache install" 
 							snapper status 108..109 |br|
 							snapper list -t pre-post |br|
 							snapper -v undochange 108..109 |br|
