@@ -47,3 +47,13 @@ Scan network segment
   # nmap -vvv -sn 192.168.122.0/24
   # nmap -vvv -sn 192.168.122.0-100
   
+  
+Nmap with Vuln Scripts
+
+https://hakin9.org/vulscan-advanced-vulnerability-scanning-with-nmap-nse/
+
+.. code-block:: shell
+
+  # cd /usr/share/nmap/scripts/
+  # git clone https://github.com/scipag/vulscan scipag_vulscan
+  # nmap -sV --script=scipag_vulscan/vulscan.nse www.example.com
