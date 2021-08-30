@@ -16,6 +16,7 @@ In progress transferring old notes to readthedocs-format.
    confluence
    iscsi
    gitlab
+   grubrepair
    nmap
    openssl
    pacman
