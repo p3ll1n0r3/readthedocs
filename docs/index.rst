@@ -13,6 +13,7 @@ In progress transferring old notes to readthedocs-format.
    :caption: Contents:
    
    bashrc
+   kitty
    confluence
    iscsi
    gitlab
