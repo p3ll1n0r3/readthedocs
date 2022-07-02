@@ -1,5 +1,8 @@
+KITTY is the best, configurable and fastest terminal in Linux
 
 .. code-block:: shell
+  Configuration file ~/.config/kitty/kitty.conf
+
   font_family      Fira Code Regular
   bold_font        auto
   italic_font      auto
