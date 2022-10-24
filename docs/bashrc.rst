@@ -19,9 +19,9 @@ Setting a customized prompt and terminal options
 
   __stat() {
     if [ $? -eq 0 ]; then
-        echo -en "\033[0;32m✔ $Color_Off "
+        echo -en "\033[0;32m✔ \e[m"
     else
-        echo -en "\033[0;31m✘ $Color_Off "
+        echo -en "\033[0;31m✘ \e[m"
     fi
   }
 
