@@ -11,7 +11,11 @@ command         usage					syntax
 =============== ======================================= ===========================================================
 audit2why       why is SELinux denied |br|              audit2why -i /var/log/audit/audit.log |br|
                   					grep 1573441241.893:21782 /var/log/audit/audit.log \| audit2why |br|
- 
+asciinema	screen recording the terminal to SVG	python3 -m pip install asciinema
+							npm i svg-term-cli -g
+							asciinema rec demo.cast
+							cat demo.cast | svg-term --out demo.svg --window
+
 awk             pattern scanning and processing		ps aux \| awk '{ print $2 }' |br| 
  		language |br|
 
